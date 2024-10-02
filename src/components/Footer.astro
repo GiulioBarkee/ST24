@@ -1,0 +1,198 @@
+---
+const Scopri = `Scopri`;
+const Sc1 = `Studio`;
+const Sc2 = `Servizi`;
+const Sc3 = `Journal`;
+const Sc4 = `Circolari`;
+
+const Social = `Social`;
+const So1 = `Linkedin`;
+
+const RimaniAggiornato = `Rimani aggiornato con le ultime
+notizie dal mondo ST24`;
+const action = `ISCRIVIMI ALLA NEWSLETTER`;
+const Policy = `ST24 blablabla - blablabla - P.IVA 238476529348765 |`;
+const Privacy = `Privacy policy`;
+---
+
+<footer class="footer">
+  <div class="footer__columns">
+    <div class="footer__column">
+      <h4>{Scopri}</h4>
+      <ul>
+        <li><a href="#">{Sc1}</a></li>
+        <li><a href="#">{Sc2}</a></li>
+        <li><a href="#">{Sc3}</a></li>
+        <li><a href="#">{Sc4}</a></li>
+      </ul>
+    </div>
+    <div class="footer__column">
+      <h4>{Social}</h4>
+      <ul>
+        <li><a href="#">{So1}</a></li>
+      </ul>
+    </div>
+    <div class="footer__column newsletter">
+      <h4>{RimaniAggiornato}</h4>
+      <form class="footer__form">
+        <input type="email" placeholder="Email" />
+        <button type="submit" class="button"
+          >{action} <span class="button-icon">→</span></button
+        >
+      </form>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <a class="policy-footer" href="">{Policy}</a>
+    <a class="policy-footer" href="">{Privacy}</a>
+  </div>
+</footer>
+
+<style lang="scss">
+  .footer {
+    background-color: var(--ST24-skygreen);
+    padding: var(--padding-viewport);
+    color: #fff;
+    position: relative;
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+    white-space: pre-line;
+
+    .footer__columns {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 2rem;
+
+      .footer__column:nth-child(2) {
+        width: 25%;
+      }
+
+      .footer__column:nth-child(3) {
+        width: 40%;
+        @media (max-width: 768px) {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 768px) {
+        display: flex;
+        flex-wrap: wrap;
+
+        /* Disposizione delle prime due colonne in orizzontale con calcolo del gap */
+        .footer__column:first-child,
+        .footer__column:nth-child(2) {
+          width: calc(50% - 1rem); /* Sottrai metà del gap tra le colonne */
+          margin-bottom: 1.5rem;
+        }
+
+        .footer__column:nth-child(3) {
+          width: 100%;
+        }
+      }
+
+      h4 {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        white-space: pre-line;
+        font-weight: 300;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        line-height: 1.5rem;
+
+        li {
+          margin-bottom: 0.5rem;
+
+          a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 300;
+            opacity: 0.8;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+
+    .newsletter {
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+
+        input {
+          padding: 0.5rem;
+          border: none;
+          border-bottom: 1px solid #fff;
+          background-color: transparent;
+          color: #fff;
+          font-size: 1rem;
+
+          &::placeholder {
+            color: #fff;
+            opacity: 0.7;
+          }
+        }
+
+        .button {
+          display: inline-flex;
+          align-items: center;
+          padding: 0.75rem 1.5rem;
+          border: 2px solid var(--ST24-skyyellow);
+          border-radius: 50px;
+          font-size: 1rem;
+          color: var(--ST24-skyyellow);
+          background-color: transparent;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          align-self: flex-start;
+          @media (max-width: 768px) {
+            align-self: flex-end;
+          }
+
+          &:hover {
+            background-color: #fff;
+            color: var(--ST24-skygreen);
+          }
+
+          .button-icon {
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+          }
+
+          &:hover .button-icon {
+            transform: translateX(5px);
+          }
+        }
+      }
+    }
+  }
+
+  .footer__bottom {
+    text-align: center;
+    padding-top: 1rem;
+    position: absolute;
+    bottom: 1rem;
+
+    .policy-footer {
+      font-size: 0.9rem;
+      opacity: 0.8;
+
+      a {
+        text-decoration: none;
+        color: #fff;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+</style>

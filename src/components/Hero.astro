@@ -1,0 +1,109 @@
+---
+const t = `Stronger <em>together</em>,
+competenze specialistiche
+al servizio delle imprese`;
+
+const subtitle = `Siamo partner dei nostri clienti e amiamo accompagnarli con professionalità ed
+esperienza nelle sfide di ogni giorno, forti di una marcata vocazione internazionale e
+orgogliosi delle nostre origini e del nostro territorio.`;
+
+const p = `Egestas auctor quis cursus vulputate. Quis lacus at augue sit nunc. Massa fermentum nunc duis aliquam fermentum nisl leo laoreet. Odio quis est purus ac quam faucibus. Quis pharetra elit viverra convallis nisl sit. Cursus ut scelerisque nibh mattis varius vel eros tristique sit.
+Ut quam consequat tellus scelerisque pharetra phasellus sagittis porta feugiat. Nam tellus viverra id quis praesent viverra ultrices.`;
+
+const action = `CONOSCI LO STUDIO`;
+
+
+---
+
+<section class="hero">
+  <div class="hero-content">
+    <h1 class="text-reveal" set:html={t} />
+    <p class="text-reveal" style="--delay: .4">{subtitle}</p>
+  </div>
+  <div class="hero-img">
+    <img src="/public/assets/hero-img.png" alt="" />
+  </div>
+  <div class="hero-action">
+    <p>{p}</p>
+    <a href="#" class="button">
+      {action}
+      <span class="button-icon">→</span>
+    </a>
+  </div>
+</section>
+
+<style lang="scss">
+  section {
+    padding: var(--padding-viewport);
+    h1 {
+      white-space: pre-line;
+      font-size: var(--h1);
+      font-weight: 400;
+      color: #4c4c4c;
+      margin-bottom: 2rem;
+    }
+    .hero-content {
+      p {
+        white-space: pre-line;
+        color: #7e7e7e;
+        font-size: clamp(0.6rem, 4vw, 1.7rem);
+        margin-bottom: 5rem;
+      }
+    }
+
+    .hero-img {
+      margin-bottom: 5rem;
+    }
+   .hero-action {
+  margin-left: 13rem;
+  width: 70%;
+  margin-bottom: 5rem;
+
+  /* Applica Flexbox per l'allineamento del pulsante */
+  display: flex;
+  flex-direction: column; /* Disposizione degli elementi in colonna */
+  align-items: flex-start; /* Per allineare inizialmente a sinistra */
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+    width: 100%;
+    justify-content: flex-end; /* Allinea a destra il pulsante */
+    align-items: flex-end; /* Assicura che il pulsante sia a destra */
+  }
+
+  p {
+    font-size: clamp(0.6rem, 4vw, 1.7rem);
+    color: #7e7e7e;
+    margin-bottom: 3rem;
+  }
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #4c4c4c; /* Colore del bordo */
+  border-radius: 50px; /* Bordo arrotondato */
+  color: #4c4c4c; /* Colore del testo */
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #4c4c4c; /* Cambia il colore di sfondo al passaggio del mouse */
+    color: #fff; /* Cambia il colore del testo al passaggio del mouse */
+  }
+
+  .button-icon {
+    margin-left: 0.5rem; /* Spazio tra il testo e l'icona */
+    transition: transform 0.3s ease;
+  }
+
+  &:hover .button-icon {
+    transform: translateX(5px); /* Anima l'icona quando si passa con il mouse */
+  }
+}
+  }
+</style>

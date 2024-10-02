@@ -1,0 +1,179 @@
+---
+const titolo = `Contattaci`;
+const sedi = [
+  {
+    citta: "Bergamo",
+    indirizzo: "Piazzale della Repubblica, 2",
+    telefono: "035 215008",
+  },
+  {
+    citta: "Darfo Boario",
+    indirizzo: "Via Lorenzetti, 15",
+    telefono: "0364 534871",
+  },
+  {
+    citta: "Brescia",
+    indirizzo: "Via Vittorio Emanuele II, 1",
+    telefono: "",
+  },
+];
+const buttonText = `INVIA`;
+---
+
+<section class="contact-section">
+  <h2>{titolo}</h2>
+  <div class="contact-container">
+    <!-- Colonna sinistra: Sedi -->
+    <div class="contact-info">
+      <div class="sedi">
+        {
+          sedi.map((sede) => (
+            <div class="sede">
+              <h3>{sede.citta}</h3>
+              <p>{sede.indirizzo}</p>
+              {sede.telefono && <p>{sede.telefono}</p>}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Colonna destra: Form di contatto -->
+    <div class="contact-form">
+      <form>
+        <input type="text" name="nome" placeholder="Nome" required />
+        <input type="text" name="societa" placeholder="Società" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <textarea name="messaggio" placeholder="Messaggio" rows="5" required
+        ></textarea>
+        <button type="submit" class="button">
+          {buttonText}
+          <span class="button-icon">→</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .contact-section {
+    background-color: var(--ST24-skygreen);
+    padding: var(--padding-viewport);
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    padding-block: 7rem;
+
+    h2 {
+      font-size: var(--h2);
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+  }
+
+  .contact-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 4rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  .contact-info {
+    flex: 1;
+
+    .sedi {
+      height: 100%;
+      display: flex;
+      flex-flow: column;
+      justify-content: space-between;
+      .sede {
+        margin-top: 2rem;
+        opacity: 0.9;
+
+        h3 {
+          margin-bottom: 0.5rem;
+          font-size: 1.2rem;
+          margin-bottom: 0.5rem;
+          font-weight: 400;
+        }
+
+        p {
+          margin: 0;
+          font-size: 1rem;
+          line-height: 1.6;
+        }
+      }
+    }
+  }
+
+  .contact-form {
+    flex: 1;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: none;
+        border-bottom: 1px solid #fff;
+        background-color: transparent;
+        color: #fff;
+        font-size: 1rem;
+        line-height: 1.5; /* Assicura che il testo interno e il placeholder siano ben allineati */
+        height: 3rem; /* Imposta la stessa altezza per tutti gli input e textarea */
+
+        &::placeholder {
+          color: #fff;
+          opacity: 0.7;
+          transform: translateY(0); /* Mantiene il placeholder allineato */
+        }
+      }
+
+      textarea {
+        resize: none; /* Disabilita il ridimensionamento manuale */
+        height: 3rem; /* Stessa altezza degli input */
+        overflow: hidden; /* Nasconde qualsiasi overflow per mantenere l'altezza uniforme */
+        font-family: "Gambetta", serif;
+        font-style: normal;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.75rem 1.5rem;
+        border: 2px solid var(--ST24-skyyellow);
+        border-radius: 50px;
+        font-size: 1rem;
+        color: var(--ST24-skyyellow);
+        background-color: transparent;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        align-self: flex-start;
+        margin-top: 2rem;
+        @media (max-width: 768px) {
+          align-self: flex-end;
+        }
+
+        &:hover {
+          background-color: #fff;
+          color: var(--ST24-skygreen);
+        }
+
+        .button-icon {
+          margin-left: 0.5rem;
+          transition: transform 0.3s ease;
+        }
+
+        &:hover .button-icon {
+          transform: translateX(5px);
+        }
+      }
+    }
+  }
+</style>

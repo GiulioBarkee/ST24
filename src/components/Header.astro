@@ -1,0 +1,176 @@
+---
+const logo = "/assets/LOGO-ST24.png";
+const menuItems = [
+  { name: "Studio", href: "/studio" },
+  { name: "Servizi", href: "/servizi" },
+  { name: "Storie", href: "/storie" },
+  { name: "Circolari", href: "/circolari" },
+  { name: "Contatti", href: "/contatti" },
+];
+---
+
+<header>
+  <div class="header">
+    <!-- Logo -->
+    <div class="header__logo">
+      <a href="/">
+        <img src={logo} alt="ST-24 Logo" />
+      </a>
+    </div>
+
+    <!-- Menu di Navigazione -->
+    <nav class="header__nav" id="menu">
+      <ul class="header__menu">
+        {
+          menuItems.map((item) => (
+            <li key={item.name} class="header__menu-item">
+              <a href={item.href} class="header__menu-link">
+                {item.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <!-- Pulsante Menu -->
+    <a href="javascript:void(0)" class="header__menu-button" id="menu-button">Menu</a>
+  </div>
+</header>
+
+<style lang="scss">
+  .header {
+    width: 100%;
+    height: 6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--padding-viewport);
+    position: relative;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    z-index: 1;
+    &.menu-open {
+      background-color: var(--ST24-skyyellow);
+    }
+
+    &__logo img {
+      height: 2rem; // Regola l'altezza del logo
+      width: auto;
+    }
+
+    &__nav {
+      @media (max-width: 768px) {
+        position: absolute;
+        top: 10rem;
+        left: 0;
+        width: 100%;
+        background-color: var(--ST24-skyyellow);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+      }
+
+      &.menu-open {
+        @media (max-width: 768px) {
+          max-height: 100vh; // Mostra il
+        }
+      }
+    }
+
+    &__menu {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        height: 100vh;
+        padding: var(--padding-viewport);
+        gap: 3rem;
+        padding-top: 8rem;
+      }
+    }
+
+    &__menu-item {
+      margin-left: 4rem;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      @media (max-width: 768px) {
+        margin: 1rem 0;
+      }
+    }
+
+    &__menu-link {
+      text-decoration: none;
+      color: #333333;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      font-size: var(--link);
+      line-height: 2rem;
+      @media (max-width: 768px) {
+        font-size: 3.5rem;
+      }
+
+      &:hover {
+        color: #007bff;
+      }
+    }
+
+    /* Stili per il pulsante Menu */
+    &__menu-button {
+      display: none;
+      border: 2px solid #333333;
+      padding: 0.5rem 1rem;
+      font-size: 1.5rem;
+      text-decoration: none;
+      color: #333333;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+
+      @media (max-width: 768px) {
+        display: block;
+      }
+    }
+
+    /* Stile per cambiare "Menu" in "X" */
+    // &.menu-open .header__menu-button::before {
+    //   content: "X";
+    // }
+
+    &.menu-open .header__menu-button {
+      background-color: transparent;
+      color: #333;
+      border-color: #333;
+      border-radius: 50%;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const menuButton = document.getElementById("menu-button");
+    const header = document.querySelector(".header");
+    const menu = document.getElementById("menu");
+
+    menuButton.addEventListener("click", () => {
+      header.classList.toggle("menu-open");
+      menu.classList.toggle("menu-open");
+
+      // Cambia il pulsante da 'Menu' a 'X'
+      if (header.classList.contains("menu-open")) {
+        menuButton.textContent = "X";
+        document.body.style.overflow = "hidden"; // Blocca lo scroll quando il menu è aperto
+      } else {
+        menuButton.textContent = "Menu";
+        document.body.style.overflow = ""; // Ripristina lo scroll
+      }
+    });
+  });
+</script>
