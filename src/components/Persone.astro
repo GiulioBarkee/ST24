@@ -1,16 +1,7 @@
 ---
-import fs from "fs";
-import path from "path";
+import { getCollection } from "astro:content";
 
-// Leggi tutte le persone dal contenuto del CMS
-const personeFolder = "./src/content/persone";
-const personeFiles = fs.readdirSync(personeFolder);
-
-// Estrai i dati delle persone
-const persone = personeFiles.map((file) => {
-  const content = fs.readFileSync(path.join(personeFolder, file), "utf-8");
-  return JSON.parse(content);
-});
+const peopleList = await getCollection("persone");
 ---
 
 <section class="people-section">
@@ -25,10 +16,11 @@ const persone = personeFiles.map((file) => {
 
   <div class="people-list">
     {
-      persone.map((persona) => (
+      peopleList.map((persona) => (
         <div class="person-item">
-          <a href={persona.url}>{persona.name}</a>
-          <span>{persona.role}</span>
+          <a href={persona.data.url || ""}>{persona.data.name}</a>
+          <span>{persona.data.role}</span>
+          <div class="body">{persona.body}</div>
         </div>
       ))
     }
