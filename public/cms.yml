@@ -2,7 +2,7 @@ backend:
   name: github
   repo: giuliobarkee/ST24
   branch: main
-  base_url: giuliobarkee.pages.dev
+  base_url: https://giuliobarkee.pages.dev
   auth_endpoint: /api/auth
 
 local_backend: true
