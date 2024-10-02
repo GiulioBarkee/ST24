@@ -1,0 +1,24 @@
+backend:
+  name: github
+  repo: giuliobarkee/ST24
+  branch: main
+  base_url: https://stra.studio
+  auth_endpoint: /api/auth
+
+local_backend: true
+
+media_folder: /public/
+public_folder: /
+
+collections:
+  - name: persone
+    label: Persone
+    folder: 'src/content/persone'
+    create: true
+    media_folder: /public/assets/
+    public_folder: '/assets/'
+    summary: "{{name}}"
+    fields:
+      - {name: name, widget: string}
+      - {name: role, widget: string}
+      - {name: url, widget: string, required: false}

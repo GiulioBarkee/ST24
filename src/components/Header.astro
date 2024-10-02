@@ -7,9 +7,10 @@ const menuItems = [
   { name: "Circolari", href: "/circolari" },
   { name: "Contatti", href: "/contatti" },
 ];
+const { header2 } = Astro.props;
 ---
 
-<header>
+<header class:list={{header2}}>
   <div class="header">
     <!-- Logo -->
     <div class="header__logo">
@@ -34,7 +35,9 @@ const menuItems = [
     </nav>
 
     <!-- Pulsante Menu -->
-    <a href="javascript:void(0)" class="header__menu-button" id="menu-button">Menu</a>
+    <a href="javascript:void(0)" class="header__menu-button" id="menu-button"
+      >Menu</a
+    >
   </div>
 </header>
 
@@ -47,9 +50,14 @@ const menuItems = [
     align-items: center;
     padding: var(--padding-viewport);
     position: relative;
-    padding-top: 5rem;
     padding-bottom: 5rem;
     z-index: 1;
+    @media(max-width: 768px){
+      padding-top: 5rem;
+    }
+
+
+
     &.menu-open {
       background-color: var(--ST24-skyyellow);
     }
@@ -151,6 +159,8 @@ const menuItems = [
       border-radius: 50%;
     }
   }
+
+  .header2{background-color: var(--ST24-skyazure);}
 </style>
 
 <script>

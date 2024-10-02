@@ -1,0 +1,90 @@
+---
+import fs from "fs";
+import path from "path";
+
+// Leggi tutte le persone dal contenuto del CMS
+const personeFolder = "./src/content/persone";
+const personeFiles = fs.readdirSync(personeFolder);
+
+// Estrai i dati delle persone
+const persone = personeFiles.map((file) => {
+  const content = fs.readFileSync(path.join(personeFolder, file), "utf-8");
+  return JSON.parse(content);
+});
+---
+
+<section class="people-section">
+  <h2>Le persone fanno la differenza</h2>
+  <p class="people-description">
+    Justo aliquam amet id ultricies interdum lacus ipsum ipsum. Adipiscing velit
+    eget leo nisl in arcu quam sit. Ipsum aliquam hac proin praesent sagittis
+    duis libero massa amet. Mauris rhoncus massa sit a neque at bibendum
+    pharetra tincidunt. Mi praesent massa sit magna diam turpis velit. Cras
+    proin vitae pellentesque aliquet.
+  </p>
+
+  <div class="people-list">
+    {
+      persone.map((persona) => (
+        <div class="person-item">
+          <a href={persona.url}>{persona.name}</a>
+          <span>{persona.role}</span>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style lang="scss">
+  .people-section {
+    padding: var(--padding-viewport);
+    margin-left: 0;
+    width: 50%;
+    padding-top: 0;
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .people-description {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 3rem;
+    }
+
+    .people-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+
+      .person-item {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+
+        a {
+          text-decoration: none;
+          font-size: 1.2rem;
+          color: #333;
+          font-weight: bold;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        span {
+          font-size: 1rem;
+          color: #999;
+        }
+      }
+    }
+  }
+</style>

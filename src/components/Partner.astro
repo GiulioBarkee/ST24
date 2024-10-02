@@ -1,0 +1,102 @@
+---
+const title = `In cerca di un
+ partner?`;
+const description = `Vorresti capire come il nostro approccio può aiutare la tua azienda a
+crescere permettendoti di focalizzare il percorso sui risultati?`;
+const buttonText = `CONTATTACI`;
+const buttonLink = `contatti`; // Modifica l'anchor con il link appropriato
+---
+
+<section class="partner-section">
+  <div class="partner-content">
+    <h2>{title}</h2>
+    <p>{description}</p>
+    <a href={buttonLink} class="button">
+      {buttonText}
+      <span class="button-icon">→</span>
+    </a>
+  </div>
+</section>
+
+<style lang="scss">
+  .partner-section {
+    background-color: var(--ST24-skygreen); /* Colore di sfondo */
+    padding: var(--padding-viewport);
+    padding-block: 7rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto; /* Adatta l'altezza in base al contenuto */
+
+    .partner-content {
+      width: 70%; /* Limita la larghezza massima del contenuto */
+      color: #fff;
+      text-align: left;
+      @media (max-width: 768px) {
+        max-width: 100%;
+        width: 100%;
+      }
+
+      h2 {
+        font-size: 2.5rem; /* Dimensione del titolo */
+        font-weight: 400;
+        margin-bottom: 2rem;
+      }
+
+      p {
+        font-size: 1.2rem; /* Dimensione del testo di descrizione */
+        line-height: 1.8;
+        margin-bottom: 2rem;
+        white-space: pre-line;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.75rem 1.5rem;
+        border: 2px solid var(--ST24-skyyellow);
+        border-radius: 50px;
+        font-size: 1.1rem;
+        color: var(--ST24-skyyellow);
+        background-color: transparent;
+        text-decoration: none;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: #fff;
+          color: var(--ST24-skygreen);
+        }
+
+        .button-icon {
+          margin-left: 0.5rem;
+          transition: transform 0.3s ease;
+        }
+
+        &:hover .button-icon {
+          transform: translateX(5px);
+        }
+      }
+    }
+  }
+
+  /* Media query per dispositivi mobili */
+  @media (max-width: 768px) {
+    .partner-content {
+      max-width: 90%;
+
+      h2 {
+        font-size: 2rem;
+        white-space: pre-line !important;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      .button {
+        font-size: 1rem;
+      }
+    }
+  }
+</style>
