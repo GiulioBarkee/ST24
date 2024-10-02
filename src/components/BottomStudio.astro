@@ -1,10 +1,25 @@
 ---
-const p = `Siamo partner dei nostri clienti e amiamo accompagnarli con professionalità ed esperienza nelle sfide di ogni giorno, forti di una marcata vocazione internazionale e orgogliosi delle nostre origini e del nostro territorio.`;
-const action = `SCOPRI I NOSTRI SERVIZI`;
-const imageUrl = "/public/assets/bottomStudio.png"; // Sostituisci con il percorso corretto dell'immagine
+// interface Props {
+//   paragraph: string;
+//   actionText: string;
+//   imageUrl: string;
+//   actionLink: string;
+//   backgroundColor?: string; // Nuova prop opzionale
+// }
+
+const {
+  paragraph = `Siamo partner dei nostri clienti e amiamo accompagnarli con professionalità ed esperienza nelle sfide di ogni giorno, forti di una marcata vocazione internazionale e orgogliosi delle nostre origini e del nostro territorio.`,
+  actionText = `SCOPRI I NOSTRI SERVIZI`,
+  imageUrl = "/assets/bottomStudio.png",
+  actionLink = "#",
+  backgroundColor = "#f9f9f9", // Valore di default
+} = Astro.props;
 ---
 
-<section class="partner-section">
+<section
+  class="partner-section"
+  style={`background-color: ${backgroundColor};`}
+>
   <div class="partner-container">
     <!-- Colonna Immagine -->
     <div class="partner-image">
@@ -13,9 +28,9 @@ const imageUrl = "/public/assets/bottomStudio.png"; // Sostituisci con il percor
 
     <!-- Colonna Testo -->
     <div class="partner-content">
-      <p>{p}</p>
-      <a href="#" class="button">
-        {action}
+      <p>{paragraph}</p>
+      <a href={actionLink} class="button">
+        {actionText}
         <span class="button-icon">→</span>
       </a>
     </div>
@@ -27,7 +42,7 @@ const imageUrl = "/public/assets/bottomStudio.png"; // Sostituisci con il percor
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f9f9f9;
+    /* Rimosso background-color poiché gestito via stile inline */
     padding: var(--padding-viewport);
     padding-block: 7rem;
     @media (max-width: 768px) {
@@ -39,7 +54,6 @@ const imageUrl = "/public/assets/bottomStudio.png"; // Sostituisci con il percor
       display: flex;
       gap: 8rem;
       align-items: center;
-      // max-width: 1200px;
       width: 88%;
       justify-content: space-between;
 
