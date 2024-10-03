@@ -1,0 +1,122 @@
+---
+const { persona } = Astro.props;
+const { Content } = await persona.render();
+---
+
+<div class="person-item">
+  <div class="modal-button">
+    <span class="title">{persona.data.title}</span>
+    <span class="role">{persona.data.role}</span>
+  </div>
+  <div class="modal-container">
+    <div class="right-panel">
+      <img src={persona.data.img} alt={persona.data.name} />
+      <div class="contain-text">
+        <Content />
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".person-item").forEach((personItem) => {
+      const button = personItem.querySelector(".modal-button");
+      const modal = personItem.querySelector(".modal-container");
+
+      // Verifica che entrambi gli elementi esistano
+      if (button && modal) {
+        // Apri il modale al click del bottone
+        button.addEventListener("click", () => {
+          modal.classList.add("selected");
+        });
+
+        // Chiudi il modale se clicchi fuori dal contenuto
+        modal.addEventListener("click", (event) => {
+          if (event.target.classList.contains("modal-container")) {
+            modal.classList.remove("selected");
+          }
+        });
+      }
+    });
+  });
+</script>
+
+<style lang="scss">
+  .person-item {
+    width: 100%;
+    padding-block: 1rem;
+    border-bottom: 1px solid #dedede;
+    position: relative;
+    text-wrap: balance;
+
+    .modal-button {
+      cursor: pointer;
+      display: flex;
+      z-index: 1;
+
+      .title {
+        width: 60%;
+      }
+      .role {
+        width: 40%;
+        font-size: 0.8rem;
+        color: #7e7e7e;
+      }
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+
+        .title,
+        .role {
+          width: 100%;
+          text-align: left;
+        }
+
+        .role {
+          margin-top: 0.5rem;
+        }
+      }
+    }
+
+    .modal-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      overscroll-behavior: none;
+      overflow: auto;
+      justify-content: flex-end;
+      z-index: 1000;
+      height: 100%;
+
+      &.selected {
+        display: flex;
+      }
+
+      .right-panel {
+        flex: 0.75;
+        background: var(--ST24-skyyellow);
+        padding: 1rem;
+        overflow: auto;
+        overscroll-behavior: none;
+        display: flex;
+
+        img {
+          aspect-ratio: 3 / 4;
+          object-fit: cover;
+          width: 60%;
+          height: 70%;
+        }
+        .contain-text {
+          display: flex;
+          flex-flow: column;
+        }
+      }
+    }
+  }
+</style>

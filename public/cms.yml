@@ -13,12 +13,21 @@ public_folder: /
 collections:
   - name: persone
     label: Persone
-    folder: 'src/content/persone'
+    folder: "src/content/persone"
     create: true
     media_folder: /public/assets/
-    public_folder: '/assets/'
-    summary: "{{name}}"
+    public_folder: "/assets/"
     fields:
-      - {name: name, widget: string}
-      - {name: role, widget: string}
-      - {name: url, widget: string, required: false}
+      - { name: title, label: "Nome", widget: string }
+      - { name: role, widget: string }
+      - { name: img, widget: image }
+      - {
+          name: links,
+          widget: list,
+          fields:
+            [
+              { name: link, widget: string },
+              { name: img, widget: image, required: false },
+            ],
+        }
+      - { name: body, widget: markdown }

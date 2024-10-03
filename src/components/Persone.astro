@@ -1,11 +1,15 @@
 ---
 import { getCollection } from "astro:content";
+import Persona from "./Persona.astro";
 
 const peopleList = await getCollection("persone");
+
+const differenza = `Le persone
+fanno la differenza`;
 ---
 
 <section class="people-section">
-  <h2>Le persone fanno la differenza</h2>
+  <h2>{differenza}</h2>
   <p class="people-description">
     Justo aliquam amet id ultricies interdum lacus ipsum ipsum. Adipiscing velit
     eget leo nisl in arcu quam sit. Ipsum aliquam hac proin praesent sagittis
@@ -14,29 +18,27 @@ const peopleList = await getCollection("persone");
     proin vitae pellentesque aliquet.
   </p>
 
-  <div class="people-list">
-    {
-      peopleList.map((persona) => (
-        <div class="person-item">
-          <a href={persona.data.url || ""}>{persona.data.name}</a>
-          <span>{persona.data.role}</span>
-          <div class="body">{persona.body}</div>
-        </div>
-      ))
-    }
-  </div>
+
+    <div class="people-list">
+      {peopleList.map((persona) => <Persona {persona} />)}
+    </div>
+
 </section>
 
 <style lang="scss">
   .people-section {
     padding: var(--padding-viewport);
     margin-left: 0;
-    width: 50%;
     padding-top: 0;
+    white-space: pre-line;
 
     h2 {
-      font-size: 2rem;
+      font-size: var(--h2);
       margin-bottom: 2rem;
+      font-weight: 400;
+    }
+    p {
+      width: 60%;
     }
 
     .people-description {
@@ -49,6 +51,8 @@ const peopleList = await getCollection("persone");
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 2rem;
+      width: 100%;
+   
 
       @media (max-width: 768px) {
         grid-template-columns: 1fr;
