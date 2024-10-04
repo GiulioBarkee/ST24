@@ -1,0 +1,96 @@
+[
+  {
+    "slug": "consulenza-di-gestione",
+    "name": "Payroll",
+    "title": "Affida a noi il payroll\ndella tua azienda",
+    "subtitle": "Dall’assunzione alla cessazione: gestiamo noi ogni\nadempimento derivante dal rapporto di lavoro.",
+    "image": "/assets/payroll.png",
+    "order": 1,
+    "description": "Il servizio di outsourcing del payroll offerto da Gesam risponde in modo completo ed esaustivo alle esigenze delle aziende di qualsiasi dimensione, proponendo un servizio costantemente adeguato alle peculiarità delle singole realtà aziendali. Garantiamo una gestione del payroll personalizzata e modulata sul cliente, in grado di assicurare tutti i vantaggi organizzativi ed economici dell'outsourcing e sollevare l’impresa da adempimenti pesanti e gravosi.",
+    "cards": [
+      {
+        "title": "SERVIZIO\nINDIVIDUALIZZATO",
+        "subtitle": "Non si propone un servizio standard identico per tutte le società, ma verrai assegnato ad un gruppo di lavoro e a un interlocutore dedicato che individuerà la soluzione più congeniale alle esigenze della tua impresa.",
+        "image": "/assets/bgg.jpg"
+      },
+      {
+        "title": "RAPPORTI CON GLI ENTI\nESTERNI",
+        "subtitle": "Gesam gestisce per te i rapporti con Inps, Inail, Ministero del Lavoro, Agenzia delle Entrate, Centri per l'Impiego, e fondi di previdenza e assistenza.",
+        "image": "/assets/bgg.jpg"
+      },
+      {
+        "title": "ELABORAZIONE E\nASSISTENZA",
+        "subtitle": "Elaboriamo i modelli fiscali, le denunce e le dichiarazioni in capo al datore di lavoro in quanto sostituto d'imposta (Certificazione Unica, modello 770 semplificato ed ordinario) e ti assistiamo nella compilazione e nella elaborazione dei modelli 730.",
+        "image": "/assets/bgg.jpg"
+      }
+    ],
+    "titleImage": "L’outsourcing del payroll ti\npermette di concentrarti sulla\nproduttività della tua impresa.",
+    "imageCard": "/assets/payroll2.png",
+    "heading2": "I nostri servizi per il\npayroll della tua azienda",
+    "services": [
+      {
+        "title": "Budget e analisi costi del personale",
+        "content": "Sviluppiamo una dettagliata previsione di costo attraverso il calcolo di simulazione, il controllo dei dati consuntivi e la determinazione degli scostamenti, lasciando libero il cliente di definire, secondo le proprie esigenze, i parametri di input e di output.",
+        "image": "/assets/bgg.jpg"
+      },
+      {
+        "title": "Soluzioni HR web integrate",
+        "content": "Gestione presenze con annesso workflow autorizzativo, trasferte, risorse umane, archiviazione documentale, timesheet sono alcune delle soluzioni, perfettamente integrate tra loro e col programma paghe, che possiamo offrire ai nostri clienti.",
+        "image": "/assets/bgg.jpg"
+      },
+      {
+        "title": "Adempimenti mensili, periodici e annuali",
+        "content": "Il nostro servizio è comprensivo della gestione di ogni adempimento amministrativo, contributivo, assicurativo, previdenziale e fiscale connesso con l’amministrazione del personale.",
+        "image": "/assets/bgg.jpg"
+      }
+    ]
+  },
+  {
+    "slug": "consulenza-fiscale",
+    "name": "Consulenza",
+    "title": "La consulenza del\nlavoro pensata per te",
+    "subtitle": "La nostra consulenza dedicata e specifica semplificherà questioni complesse e ti affiancherà nel management della tua impresa.",
+    "image": "/assets/payroll.png",
+    "order": 2,
+    "description": "Gesam offre pieno supporto in questioni delicate come l’interpretazione della normativa di legge e contrattuale, l’amministrazione del personale, e la gestione delle operazioni societarie straordinarie e degli ammortizzatori sociali. L'esperienza e la professionalità del nostro team consentono di fornire al cliente la soluzione più idonea e competitiva, mediante un’organizzazione versatile e la capacità di collaborare in modo sinergico e flessibile.",
+    "cards": [
+      {
+        "title": "SUPPORTO AL\nMANAGEMENT",
+        "subtitle": "Non ci limitiamo ad una consulenza specifica e dedicata, ma ti affianchiamo nel management aziendale o direttamente alla proprietà per assicurare un futuro alla azienda."
+      },
+      {
+        "title": "PROFESSIONALITÀ",
+        "subtitle": "L'esperienza e la professionalità di Gesam consentono di affrontare tematiche ordinarie e complesse, fornendo la soluzione più idonea e competitiva."
+      },
+      {
+        "title": "DALL'INIZIO ALLA FINE\nDEL RAPPORTO DI\nLAVORO",
+        "subtitle": "La nostra consulenza copre ogni passo del rapporto di lavoro: dal suo inizio (redazione contratto), al suo svolgimento (procedimenti disciplinari), alla sua fine (licenziamento)."
+      }
+    ],
+    "titleImage": "Un consulente Gesam\nè sempre disponibile per una chiamata\no un’email e pronto a supportarti.",
+    "imageCard": "/assets/payroll2.png",
+    "heading2": "La nostra consulenza\nper la tua impresa",
+    "services": [
+      {
+        "title": "Consulenza ordinaria e straordinaria",
+        "content": "Ti aiutiamo a redigere correttamente un contratto di lavoro, a gestire efficacemente i procedimenti disciplinari e i licenziamenti, e ad amministrare il payroll. Inoltre, ti supportiamo nell’affrontare le operazioni societarie straordinarie.",
+        "image": "/assets/bgg.jpg"
+      },
+      {
+        "title": "Relazioni sindacali",
+        "content": "Ti affianchiamo nelle questioni che prevedono obbligatoriamente una fase a livello sindacale, come la gestione degli ammortizzatori sociali, la procedura per i licenziamenti collettivi, le operazioni societarie straordinarie che coinvolgono lavoratori dipendenti.",
+        "image": "/assets/bgg.jpg"
+      },
+      {
+        "title": "Due diligence",
+        "content": "Verifichiamo che presso l’azienda cliente o presso l’azienda che il cliente intenda acquisire, siano rispettate tutte le normative vigenti e identifichiamo le possibili aree di rischio, in modo da ridurre al minimo il pericolo di sanzioni in caso di visite ispettive di INPS e INAIL.",
+        "image": "/assets/bgg.jpg"
+      },
+      {
+        "title": "Consulenza previdenziale",
+        "content": "Offriamo assistenza e consulenza per la ricerca e selezione del personale, per la promozione di tirocini formativi e di orientamento, per la formazione attraverso i fondi interprofessionali, e per l’analisi della situazione previdenziale dei lavoratori.",
+        "image": "/assets/bgg.jpg"
+      }
+    ]
+  }
+]

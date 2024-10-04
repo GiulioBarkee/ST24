@@ -1,0 +1,126 @@
+---
+// Importa la collezione di servizi
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+
+// Funzione per generare i percorsi statici basati sul campo 'slug'
+export async function getStaticPaths() {
+  // Ottieni tutti i servizi dalla collezione
+  const servizi = await getCollection("servizi");
+
+  // Mappa ogni servizio per creare un oggetto con 'params'
+  return servizi.map((servizio) => ({
+    params: { slug: servizio.slug }, // Corrisponde al nome del file dinamico [slug].astro
+  }));
+}
+
+// Otteniamo lo slug corrente dai parametri URL
+const { slug } = Astro.params;
+
+// Otteniamo i dati del servizio corrispondente allo slug
+const servizi = await getCollection("servizi");
+const servizio = servizi.find((s) => s.slug === slug);
+
+// Verifica che il servizio esista
+if (!servizio) {
+  throw new Error(`Servizio non trovato per lo slug: ${slug}`);
+}
+
+// Dati dei paragrafi e modali (presi dal file YAML della collezione)
+const paragraphs = servizio.data.paragraphs || [];
+---
+
+<Layout title={servizio.data.title}>
+  <Header/>
+  <h1>{servizio.data.title}</h1>
+  <p>{servizio.data.description}</p>
+
+  <!-- Elenco dei paragrafi con i modali -->
+  <section class="paragraphs-section">
+    {paragraphs.map((paragraph, index) => (
+      <div class="paragraph-item" key={index}>
+        <button class="paragraph-button" data-id={index}>
+          {paragraph.title}
+        </button>
+
+        <!-- Modale associato -->
+        <div class="modal-container" id={`modal-${index}`}>
+          <div class="modal-content">
+            <span class="close-button" data-id={index}>✕</span>
+            <h2>{paragraph.title}</h2>
+            <p>{paragraph.content}</p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </section>
+</Layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Apertura del modale al click sul paragrafo
+    document.querySelectorAll('.paragraph-button').forEach(button => {
+      button.addEventListener('click', (e) => {
+        const id = e.target.dataset.id;
+        document.getElementById(`modal-${id}`).classList.add('open');
+      });
+    });
+
+    // Chiusura del modale al click del pulsante di chiusura
+    document.querySelectorAll('.close-button').forEach(button => {
+      button.addEventListener('click', (e) => {
+        const id = e.target.dataset.id;
+        document.getElementById(`modal-${id}`).classList.remove('open');
+      });
+    });
+  });
+</script>
+
+<style lang="scss">
+  .paragraph-item {
+    margin-bottom: 1rem;
+
+    .paragraph-button {
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+
+      &.open {
+        display: flex;
+      }
+
+      .modal-content {
+        background: white;
+        padding: 2rem;
+        border-radius: 5px;
+        position: relative;
+      }
+
+      .close-button {
+        cursor: pointer;
+        font-size: 1.5rem;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+    }
+  }
+</style>

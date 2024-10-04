@@ -27,5 +27,5 @@ const newsItem = await getCollection("news").then((news) =>
 <Layout title={newsItem.data.title}>
   <Header/>
   <New {newsItem} />
-  <News titleNews="Articoli suggeriti"/>
+  <News limit="3" titleNews="Articoli suggeriti"/>
 </Layout>

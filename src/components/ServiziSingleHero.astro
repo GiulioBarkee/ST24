@@ -1,0 +1,91 @@
+---
+// Estrai i paragrafi passati come props
+const { paragraphs } = Astro.props;
+---
+
+<section class="paragraphs-section">
+  {paragraphs.map((paragraph, index) => (
+    <div class="paragraph-item" key={index}>
+      <button class="paragraph-button" data-id={index}>
+        {paragraph.title}
+      </button>
+
+      <!-- Modale associato -->
+      <div class="modal-container" id={`modal-${index}`}>
+        <div class="modal-content">
+          <span class="close-button" data-id={index}>✕</span>
+          <h2>{paragraph.title}</h2>
+          <p>{paragraph.content}</p>
+        </div>
+      </div>
+    </div>
+  ))}
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Apertura del modale al click sul paragrafo
+    document.querySelectorAll('.paragraph-button').forEach(button => {
+      button.addEventListener('click', (e) => {
+        const id = e.target.dataset.id;
+        document.getElementById(`modal-${id}`).classList.add('open');
+      });
+    });
+
+    // Chiusura del modale al click del pulsante di chiusura
+    document.querySelectorAll('.close-button').forEach(button => {
+      button.addEventListener('click', (e) => {
+        const id = e.target.dataset.id;
+        document.getElementById(`modal-${id}`).classList.remove('open');
+      });
+    });
+  });
+</script>
+
+<style lang="scss">
+  .paragraph-item {
+    margin-bottom: 1rem;
+
+    .paragraph-button {
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+
+      &.open {
+        display: flex;
+      }
+
+      .modal-content {
+        background: white;
+        padding: 2rem;
+        border-radius: 5px;
+        position: relative;
+      }
+
+      .close-button {
+        cursor: pointer;
+        font-size: 1.5rem;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+    }
+  }
+</style>
