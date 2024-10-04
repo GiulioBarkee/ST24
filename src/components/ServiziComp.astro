@@ -1,0 +1,127 @@
+---
+import { getCollection } from "astro:content";
+
+// Otteniamo i servizi
+const servizi = await getCollection("servizi");
+
+// Determina l'ordine del nuovo servizio
+const newOrder = 2; // Cambia questo valore con l'ordine del nuovo servizio
+
+// Aggiorna l'ordine dei servizi per evitare duplicati e buchi
+let updatedServizi;
+
+// Controlla se esiste un servizio con lo stesso ordine
+const existingService = servizi.some(
+  (servizio) => servizio.data.order === newOrder
+);
+
+// Se esiste un servizio con lo stesso ordine, aggiorna gli ordini
+if (existingService) {
+  updatedServizi = servizi.map((servizio) => {
+    if (servizio.data.order >= newOrder) {
+      return {
+        ...servizio,
+        data: {
+          ...servizio.data,
+          order: servizio.data.order + 1,
+        },
+      };
+    }
+    return servizio;
+  });
+} else {
+  updatedServizi = servizi;
+}
+
+// Ordiniamo i servizi per assicurare che non ci siano buchi nell'ordine
+const ServiziList = updatedServizi
+  .sort((a, b) => a.data.order - b.data.order) // Ordina i servizi
+  .map((servizio, index) => {
+    // Assegna un nuovo ordine consecutivo
+    return {
+      ...servizio,
+      data: {
+        ...servizio.data,
+        order: index + 1,
+      },
+    };
+  });
+---
+
+<section class="servizi-list">
+  {
+    ServiziList.map((servizio, index) => (
+      <a
+        href=""
+        class={`servizio-item ${index === 1 ? "highlight" : ""}`}
+        key={servizio.id}
+      >
+        <span class="servizio-number">
+          {String(servizio.data.order).padStart(2, "0")}
+        </span>
+        <span class="servizio-title">{servizio.data.title}</span>
+        <span class="servizio-arrow">→</span>
+      </a>
+    ))
+  }
+</section>
+
+<style lang="scss">
+  .servizi-list {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--ST24-skyazure);
+  }
+
+  .servizio-item {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--padding-viewport);
+    padding-block: 2rem;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+    z-index: 1;
+
+    // Pseudo-elemento per l'animazione del background
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background-color: var(--ST24-skyyellow); // Simile al colore evidenziato
+      transition: width 0.3s ease;
+      z-index: -1;
+    }
+
+    &:hover::before {
+      width: 100%;
+    }
+  }
+
+  .servizio-number {
+    font-weight: 400;
+    color: #333;
+    font-size: var(--h3);
+  }
+
+  .servizio-title {
+    flex: 0.4;
+    text-align: left;
+    color: #333;
+    font-size: var(--h3);
+    white-space: nowrap;
+  }
+
+  .servizio-arrow {
+    font-size: 2rem;
+    color: #333;
+  }
+
+  // .highlight {
+  //   background-color: #ffffb3; // Simile al colore evidenziato
+  // }
+</style>

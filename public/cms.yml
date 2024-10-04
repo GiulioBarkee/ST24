@@ -7,30 +7,31 @@ backend:
 
 local_backend: true
 
-media_folder: /public/
-public_folder: /
+media_folder: /public/assets/
+public_folder: /assets/
 
 collections:
   - name: persone
     label: Persone
     folder: "src/content/persone"
     create: true
-    media_folder: /public/assets/
-    public_folder: "/assets/"
+    media_folder: /public/assets/persone/
+    public_folder: "/assets/persone/"
     fields:
       - { name: title, label: "Nome", widget: string }
-      - { name: role, widget: string }
-      - { name: img, widget: image }
+      - { name: role, label: "Ruolo", widget: string }
+      - { name: img, label: "Immagine", widget: image }
       - {
           name: links,
+          label: "Link",
           widget: list,
           fields:
             [
-              { name: link, widget: string },
-              { name: img, widget: image, required: false },
+              { name: link, label: "URL", widget: string },
+              { name: img, label: "Immagine", widget: image, required: false },
             ],
         }
-      - { name: body, widget: markdown }
+      - { name: body, label: "Descrizione", widget: markdown }
 
   - name: news
     label: News
@@ -40,7 +41,7 @@ collections:
     public_folder: "/assets/news/"
     fields:
       - { name: title, label: "Titolo", widget: string }
-      - {name: subtitle, label: "Sottotitolo", widget: string, required: false}
+      - { name: subtitle, label: "Sottotitolo", widget: string, required: false }
       - { name: date, label: "Data", widget: datetime }
       - { name: category, label: "Categoria", widget: string }
       - { name: image, label: "Immagine", widget: image }
@@ -56,8 +57,22 @@ collections:
       - { name: date, label: "Data", widget: datetime }
       - { name: title, label: "Titolo", widget: string }
       - { name: body, label: "Testo", widget: markdown }
-      - {label: Documento,
-        name: document,
-        widget: file,
-        media_folder: "static/uploads/documents",
-        public_folder: "/uploads/documents"}
+      - {
+          label: "Documento",
+          name: document,
+          widget: file,
+          media_folder: "/public/assets/circolari/documents/",
+          public_folder: "/assets/circolari/documents/",
+          required: false
+        }
+
+  - name: servizi
+    label: Servizi
+    folder: "src/content/servizi"
+    create: true
+    media_folder: /public/assets/servizi/
+    public_folder: "/assets/servizi/"
+    fields:
+      - { name: order, label: "Ordine", widget: number }
+      - { name: title, label: "Titolo", widget: string }
+      - { name: description, label: "Descrizione", widget: text }
