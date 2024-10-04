@@ -8,4 +8,6 @@ sections:
 paragraphs:
   - title: linketto
     content: contenuto del linketto
+  - title: linketto 2
+    content: contenuto del linketto 2
 ---
