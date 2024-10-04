@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import New from "../../components/New.astro";
+import News from "../../components/News.astro";
+import Header from "../../components/Header.astro";
+
+// Definiamo getStaticPaths per generare le rotte dinamiche basate sugli slug
+export async function getStaticPaths() {
+  const newsList = await getCollection("news");
+
+  return newsList.map((newsItem) => ({
+    params: { slug: newsItem.slug },
+    props: { newsItem },
+  }));
+}
+
+// Recuperiamo lo slug dall'URL
+const { slug } = Astro.params;
+
+// Troviamo l'articolo specifico usando lo slug
+const newsItem = await getCollection("news").then((news) =>
+  news.find((n) => n.slug === slug)
+);
+---
+
+<Layout title={newsItem.data.title}>
+  <Header/>
+  <New {newsItem} />
+  <News titleNews="Articoli suggeriti"/>
+</Layout>

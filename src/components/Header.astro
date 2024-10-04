@@ -7,10 +7,10 @@ const menuItems = [
   { name: "Circolari", href: "/circolari" },
   { name: "Contatti", href: "/contatti" },
 ];
-const { header2 } = Astro.props;
+const { header2, header3 } = Astro.props;
 ---
 
-<header class:list={{header2}}>
+<header class:list={{ header2, header3 }}>
   <div class="header">
     <!-- Logo -->
     <div class="header__logo">
@@ -52,11 +52,9 @@ const { header2 } = Astro.props;
     position: relative;
     padding-bottom: 5rem;
     z-index: 1;
-    @media(max-width: 768px){
+    @media (max-width: 768px) {
       padding-top: 5rem;
     }
-
-
 
     &.menu-open {
       background-color: var(--ST24-skyyellow);
@@ -129,6 +127,7 @@ const { header2 } = Astro.props;
         color: #007bff;
       }
     }
+    
 
     /* Stili per il pulsante Menu */
     &__menu-button {
@@ -160,7 +159,14 @@ const { header2 } = Astro.props;
     }
   }
 
-  .header2{background-color: var(--ST24-skyazure);}
+  .header2 {
+    background-color: var(--ST24-skyazure);
+  }
+  .header3 {
+    background-color: var(--ST24-skygreen);
+    a{color: white;}
+    img{filter: invert(1);}
+  }
 </style>
 
 <script>

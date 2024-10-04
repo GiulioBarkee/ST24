@@ -1,0 +1,111 @@
+---
+const error = `404`;
+const t = `Pagina non trovata!`;
+const action = `TORNA ALLA HOME`;
+const image =`/public/assets/404.png`
+---
+
+<section>
+  <div class="not-found">
+    <div class="grid">
+      <!-- Colonna immagine -->
+      <div class="col-50">
+        <img
+          src={image}
+          alt="Statua con errore 404"
+          class="error-image"
+        />
+      </div>
+
+      <!-- Colonna testo -->
+      <div class="col-50">
+        <div class="title">
+          <h1>{error}</h1>
+        </div>
+        <div class="subtitle">
+          <p>{t}</p>
+        </div>
+        <a href="/" class="button">
+          {action} →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .not-found {
+    height: 82vh;
+    background-color: var(--ST24-skygreen); /* Colore di sfondo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ width: 65%;
+  }
+
+  .col-50 {
+    flex: 1;
+    padding: 1rem;
+  }
+
+  .error-image {
+    width: 100%;
+    max-width: 400px;
+    object-fit: cover;
+  }
+
+  .title {
+    font-size: var(--h2);
+    font-weight: 100!important;
+    color: white;
+  }
+
+  .subtitle {
+    font-size: var(--h3);
+    color: white;
+    margin: 1rem 0
+  }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.75rem 1.5rem;
+        border: 2px solid var(--ST24-skyyellow);
+        border-radius: 50px;
+        font-size: 1rem;
+        color: var(--ST24-skyyellow);
+        background-color: transparent;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        align-self: flex-start;
+        margin-top: 2rem;
+     
+
+        &:hover {
+          background-color: #fff;
+          color: var(--ST24-skygreen);
+        }
+      }
+
+  @media (max-width: 768px) {
+    .grid {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .col-50 {
+      padding: 0;
+    }
+
+    .title {
+      font-size: 3rem;
+    }
+  }
+</style>

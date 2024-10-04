@@ -1,4 +1,155 @@
 ---
-const t = `Le nostre storie`
-const action = `TUTTI GLI  ARTICOLI`
+import { getCollection } from "astro:content";
+
+const { hideHeader, limit, titleNews } = Astro.props;
+
+// Otteniamo la collection "news" e la ordiniamo per data decrescente
+let newsList = await getCollection("news");
+newsList.sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+
+// Applichiamo il limite se la prop `limit` è definita
+if (limit !== undefined) {
+  newsList = newsList.slice(0, limit);
+}
 ---
+
+<section class="news-section">
+  {
+    !hideHeader && (
+      <div class="news-header">
+        <h2>{titleNews}</h2>
+        <a href="/storie" class="action-button">
+          TUTTI GLI ARTICOLI <span class="button-icon">→</span>
+        </a>
+      </div>
+    )
+  }
+
+  <div class="news-grid">
+    {
+      newsList.map((newsItem) => (
+        <a href={`/news/${newsItem.slug}/`} class="news-item">
+          <img
+            src={newsItem.data.image}
+            alt={newsItem.data.title}
+            class="news-image"
+          />
+          <div class="news-meta">
+            <span class="news-category">{newsItem.data.category}</span>
+            <span class="news-date">
+              {new Date(newsItem.data.date).toLocaleDateString("it-IT")}
+            </span>
+          </div>
+          <h3 class="news-title">{newsItem.data.title}</h3>
+        </a>
+      ))
+    }
+  </div>
+</section>
+
+<style lang="scss">
+  .news-section {
+    padding: var(--padding-viewport);
+  }
+
+  .news-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+
+    h2 {
+      font-size: var(--h2);
+      font-weight: 400;
+      margin: 0;
+    }
+
+    .action-button {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+      border: 2px solid #333;
+      border-radius: 50px;
+      font-size: 1rem;
+      color: #333;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      align-self: flex-start;
+
+      @media (max-width: 768px) {
+        align-self: flex-end;
+      }
+
+      .button-icon {
+        margin-left: 0.5rem;
+        transition: transform 0.3s ease;
+      }
+
+      &:hover {
+        background-color: #333;
+        color: #fff;
+
+        .button-icon {
+          transform: translateX(5px);
+        }
+      }
+    }
+  }
+
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .news-item {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+
+    .news-image {
+      width: 100%;
+      height: 200px;
+      background-color: #f0f0f0;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+
+    .news-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+
+      .news-category {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        color: #888;
+      }
+
+      .news-date {
+        font-size: 0.8rem;
+        color: #888;
+      }
+    }
+
+    .news-title {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #333;
+      margin: 0;
+    }
+
+    &:hover {
+      .news-title {
+        text-decoration: underline;
+      }
+    }
+  }
+</style>

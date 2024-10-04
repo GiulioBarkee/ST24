@@ -1,0 +1,36 @@
+---
+const { circolare } = Astro.props;
+---
+
+<section>
+  {
+    circolare && circolare.data ? (
+      <>
+        <p class="circolare-date">
+          {new Date(circolare.data.date).toLocaleDateString("it-IT")}
+        </p>
+        <h3 class="circolare-title">{circolare.data.title}</h3>
+        <p class="circolare-body">{circolare.body}</p>
+      </>
+    ) : (
+      <p>Errore: circolare non trovata o dati mancanti.</p>
+    )
+  }
+</section>
+
+<style lang="scss">
+  section {
+    padding: var(--padding-viewport);
+    .circolare-date {
+      font-weight: bold;
+      color: #555;
+    }
+    .circolare-title {
+      margin: 0.5rem 0;
+      font-size: 1.5rem;
+    }
+    .circolare-body {
+      color: #333;
+    }
+  }
+</style>

@@ -1,0 +1,61 @@
+---
+const { newsItem } = Astro.props;
+---
+
+<section class="news-single">
+  <h1 class="news-title">{newsItem.data.title}</h1>
+  <p class="news-meta">
+    {newsItem.data.category} · {
+      new Date(newsItem.data.date).toLocaleDateString("it-IT")
+    }
+  </p>
+  <p class="news-subtitle">{newsItem.data.subtitle}</p>
+  <img src={newsItem.data.image} alt={newsItem.data.title} class="news-image" />
+
+  <article class="news-body">
+    {newsItem.body}
+  </article>
+</section>
+
+<style lang="scss">
+  .news-single {
+    width: 70%;
+    margin: 0 auto;
+    padding: 2rem;
+    color: #333;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+
+    .news-title {
+      font-size: var(--h3);
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+
+    .news-subtitle {
+      margin-bottom: 1rem;
+      font-size: var(--link);
+    }
+
+    .news-meta {
+      font-size: 1rem;
+      color: #777;
+      margin-bottom: 1.5rem;
+    }
+
+    .news-image {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      margin-bottom: 2rem;
+      max-height: 30rem;
+    }
+
+    .news-body {
+      line-height: 1.8;
+      font-size: 1rem;
+      color: #444;
+    }
+  }
+</style>

@@ -1,19 +1,22 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import Competenze from '../components/Competenze.astro';
-import News from '../components/News.astro';
-import Contattaci from '../components/Contattaci.astro';
-import Footer from '../components/Footer.astro';
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Competenze from "../components/Competenze.astro";
+import News from "../components/News.astro";
+import CircolariStringaHome from "../components/CircolariStringaHome.astro";
+import Circolari from "../components/CircolariComp.astro";
+import Contattaci from "../components/Contattaci.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <Layout title="Home">
-<Header/>
-<Hero/>
-<Competenze/>
-<News/>
-<Contattaci/>
-<Footer/>
+  <Header />
+  <Hero />
+  <Competenze />
+  <News limit={3} titleNews="Le nostre storie" />
+  <CircolariStringaHome/>
+  <Circolari limit={3} />
+  <Contattaci />
+  <Footer />
 </Layout>
-

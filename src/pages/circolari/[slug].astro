@@ -1,0 +1,32 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Circolare from "../../components/Circolare.astro";
+import Footer from "../../components/Footer.astro";
+
+// Definiamo getStaticPaths per generare le rotte dinamiche basate sugli slug
+export async function getStaticPaths() {
+  const circolariList = await getCollection("circolari");
+
+  return circolariList.map((circolare) => ({
+    params: { slug: circolare.slug },
+    props: { circolare },
+  }));
+}
+
+// Recuperiamo lo slug dall'URL
+const { slug } = Astro.params;
+
+// Troviamo l'articolo specifico usando lo slug
+const circolariList = await getCollection("circolari");
+const circolare = circolariList.find((n) => n.slug === slug);
+
+---
+<Layout title={circolare ? circolare.data.title : "Circolare"}>
+  <Header />
+  {circolare ? (<Circolare circolare={circolare} />) : (
+    <p>Circolare non trovata.</p>
+  )}
+  <Footer />
+</Layout>

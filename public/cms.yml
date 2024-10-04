@@ -31,3 +31,33 @@ collections:
             ],
         }
       - { name: body, widget: markdown }
+
+  - name: news
+    label: News
+    folder: "src/content/news"
+    create: true
+    media_folder: /public/assets/news/
+    public_folder: "/assets/news/"
+    fields:
+      - { name: title, label: "Titolo", widget: string }
+      - {name: subtitle, label: "Sottotitolo", widget: string, required: false}
+      - { name: date, label: "Data", widget: datetime }
+      - { name: category, label: "Categoria", widget: string }
+      - { name: image, label: "Immagine", widget: image }
+      - { name: body, label: "Testo", widget: markdown }
+
+  - name: circolari
+    label: Circolari
+    folder: "src/content/circolari"
+    create: true
+    media_folder: /public/assets/circolari/
+    public_folder: "/assets/circolari/"
+    fields:
+      - { name: date, label: "Data", widget: datetime }
+      - { name: title, label: "Titolo", widget: string }
+      - { name: body, label: "Testo", widget: markdown }
+      - {label: Documento,
+        name: document,
+        widget: file,
+        media_folder: "static/uploads/documents",
+        public_folder: "/uploads/documents"}
