@@ -8,48 +8,82 @@ const ServiziList = servizi.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <section class="servizi-list">
-  {
-    ServiziList.map((servizio, index) => (
-      <a
-        href={`/servizi/${servizio.slug}`}
-        class="servizio-item"
-        key={servizio.id}
-      >
-        <span class="servizio-number">
-          {String(servizio.data.order).padStart(2, "0")}
-        </span>
-        <span class="servizio-title">{servizio.data.title}</span>
-        <span class="servizio-arrow">→</span>
-      </a>
-    ))
-  }
+    {
+      ServiziList.map((servizio, index) => (
+        <a
+          href={`/servizi/${servizio.slug}`}
+          class="servizio-item"
+          key={servizio.id}
+        >
+          <span class="servizio-number">
+            {String(servizio.data.order).padStart(2, "0")}
+          </span>
+          <span class="servizio-title">{servizio.data.title}</span>
+          <span class="servizio-arrow">→</span>
+        </a>
+      ))
+    }
 </section>
 
 <style lang="scss">
+  section {
+    background-color: var(--ST24-skyazure);
+    padding-bottom: 6rem;
+    padding-top: 0rem;
+  }
+
   .servizi-list {
     display: flex;
     flex-direction: column;
+    // padding: var(--padding-viewport);
   }
 
   .servizio-item {
     display: flex;
     justify-content: space-between;
-    padding: 1rem;
-    border-bottom: 1px solid #ddd;
+    align-items: center;
+    padding-block: 2rem;
+    border-bottom: 1px solid #a3a3a3;
     text-decoration: none;
     color: inherit;
+    font-size: var(--h3);
+    white-space: nowrap;
+    font-weight: 400;
     cursor: pointer;
+    position: relative;
+    overflow: hidden; /* Necessario per l'animazione del background */
+    z-index: 1; /* Posiziona il contenuto sopra l'animazione */
 
     .servizio-number {
-      font-weight: bold;
+      width: 10%;
     }
 
     .servizio-title {
-      flex: 1;
+      width: 60%;
+      text-align: left;
     }
 
     .servizio-arrow {
-      font-size: 1.5rem;
+      font-size: 2.5rem;
+    }
+
+    /* Pseudo-elemento per l'animazione del background */
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%; /* Partenza a sinistra dell'elemento */
+      width: 100%;
+      height: 100%;
+      background-color: var(
+        --ST24-skyyellow
+      ); /* Colore del background all'hover */
+      transition: left 0.5s ease; /* Tempo e stile della transizione */
+      z-index: -1; /* Dietro il contenuto dell'elemento */
+    }
+
+    &:hover::before {
+      left: 0; /* Sposta l'elemento pseudo da sinistra a destra */
     }
   }
 </style>

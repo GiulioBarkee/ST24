@@ -1,0 +1,160 @@
+---
+const t = `FAQ, vediamoci chiaro`;
+const sub = `Ogni domanda è lecita, anni di esperienza ci hanno permesso di
+raccogliere le più comuni, se non dovessi trovare qui quella che cerchi `;
+const action = `contattaci`;
+
+const faqs = [
+  {
+    question: "Quali tipologie di aziende segue lo studio?",
+    answer:
+      "Amet massa libero eleifend sapien. Pellentesque ultrices dui tristique blandit in sed mollis imperdiet...",
+  },
+  {
+    question:
+      "Come si strutturerà il team di lavoro che seguirà la mia azienda?",
+    answer:
+      "Amet massa libero eleifend sapien. Pellentesque ultrices dui tristique blandit in sed mollis imperdiet...",
+  },
+  {
+    question: "Id consectetur elementum est suspendisse nulla elit?",
+    answer:
+      "Diam cursus cursus quam nulla congue dignissim mi. Tellus euismod urna posuere morbi...",
+  },
+  {
+    question: "Faucibus amet ultrices eget venenatis malesuada?",
+    answer:
+      "Faucibus amet ultrices eget venenatis malesuada varius in consequat et amet integer...",
+  },
+  {
+    question: "Ipsum elementum vel quam mauris nibh?",
+    answer: "In sagittis risus magna pulvinar felis consectetur dui quis...",
+  },
+];
+---
+
+<section>
+  <div class="acc-header">
+    <h2>{t}</h2>
+    <p>{sub}</p>
+    <a href="#">{action}</a>
+  </div>
+
+  <div class="acc-container">
+    {
+      faqs.map((faq, index) => (
+        <div class="acc-single" data-index={index}>
+          <h4>
+            {faq.question}
+            <span class="arrow" />
+          </h4>
+          <div class="acc-content">
+            <p>{faq.answer}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  // Aggiungi evento al caricamento del DOM
+  document.addEventListener("DOMContentLoaded", () => {
+    const accordions = document.querySelectorAll(".acc-single");
+
+    accordions.forEach((accordion, index) => {
+      const header = accordion.querySelector("h4");
+      const content = accordion.querySelector(".acc-content");
+
+      // Gestione del click per l'accordion
+      header.addEventListener("click", () => {
+        // Chiudi tutti gli altri accordion
+        accordions.forEach((otherAccordion, otherIndex) => {
+          const otherContent = otherAccordion.querySelector(".acc-content");
+          if (otherIndex !== index) {
+            otherAccordion.classList.remove("active");
+            otherContent.style.maxHeight = null;
+          }
+        });
+
+        // Alterna l'apertura dell'accordion cliccato
+        if (accordion.classList.contains("active")) {
+          accordion.classList.remove("active");
+          content.style.maxHeight = null;
+        } else {
+          accordion.classList.add("active");
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
+      });
+    });
+  });
+</script>
+
+<style lang="scss">
+  section {
+    padding: var(--padding-viewport);
+    white-space: pre-line;
+  }
+
+  .acc-header {
+    text-align: left;
+    padding: 1rem;
+    border-bottom: 1px solid #dedede;
+    padding-left: 0;
+    padding-bottom: 5rem;
+
+    h2 {
+      font-size: var(--h2);
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+    p,
+    a {
+      opacity: 0.8;
+    }
+    a {
+      text-decoration: underline 1px #7e7e7e;
+    }
+  }
+
+  .acc-container {
+    margin: 0 auto;
+  }
+
+  .acc-single {
+    border-bottom: 1px solid #e0e0e0;
+    cursor: pointer;
+  }
+
+  .acc-single h4 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    background-color: #fff;
+    margin: 0;
+    padding-left: 0;
+  }
+
+  .acc-content {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+    // padding-block: 1rem
+  }
+
+  .acc-content p {
+    margin-bottom: 2rem;
+    opacity: 0.8;
+  }
+
+  .arrow {
+    transition: transform 0.3s ease;
+  }
+
+  .acc-single.active .arrow {
+    transform: rotate(180deg);
+  }
+</style>

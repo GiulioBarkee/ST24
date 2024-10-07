@@ -3,6 +3,9 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
+import Partner from "../../components/Partner.astro";
+import Faq from "../../components/Faq.astro";
+import Footer from "../../components/Footer.astro";
 
 // Funzione per generare i percorsi statici basati sul campo 'slug'
 export async function getStaticPaths() {
@@ -32,12 +35,14 @@ const paragraphs = servizio.data.paragraphs || [];
 ---
 
 <Layout title={servizio.data.title}>
-  <Header/>
-  <h1>{servizio.data.title}</h1>
-  <p>{servizio.data.description}</p>
-
+  <Header header2={true}/>
+ <h1>{servizio.data.title}</h1>
   <!-- Elenco dei paragrafi con i modali -->
   <section class="paragraphs-section">
+    
+  <p class="descrizione-servizio">{servizio.data.description}</p>
+  
+  <div class="grid">
     {paragraphs.map((paragraph, index) => (
       <div class="paragraph-item" key={index}>
         <button class="paragraph-button" data-id={index}>
@@ -47,14 +52,20 @@ const paragraphs = servizio.data.paragraphs || [];
         <!-- Modale associato -->
         <div class="modal-container" id={`modal-${index}`}>
           <div class="modal-content">
+    <div class="container-button">
             <span class="close-button" data-id={index}>✕</span>
+            </div>
             <h2>{paragraph.title}</h2>
             <p>{paragraph.content}</p>
           </div>
         </div>
-      </div>
+        </div>
+   
     ))}
   </section>
+  <Partner/>
+  <Faq/>
+  <Footer/>
 </Layout>
 
 <script>
@@ -78,17 +89,52 @@ const paragraphs = servizio.data.paragraphs || [];
 </script>
 
 <style lang="scss">
+  h1{padding: var(--padding-viewport); font-size: var(--h2);
+    color: var(--ST24-skygreen);
+    font-weight: 500; background-color: var(--ST24-skyazure); padding-bottom: 3rem;}
+  section{padding: var(--padding-viewport);
+  .descrizione-servizio{font-size: 1.2rem; opacity: 0.8; padding-bottom: 3rem;}
+
+.grid {
+  display: flex;
+  width: 100%;
+  @media(max-width: 768px){
+    flex-wrap: wrap;
+  }
+
   .paragraph-item {
     margin-bottom: 1rem;
+    width: 50%;
+    margin-right: 1rem;
+    border-bottom: 1px solid #dedede;
+    padding-block: 0.5rem;
+    transition: opacity 0.3s ease;
+    @media(max-width: 768px){
+      width: 100%;
+    }
+
+    // L'elemento hoverato mantiene opacity 1
+    &:hover {
+      opacity: 1 !important;
+    }
+  }
+
+  // Quando si passa con il mouse su un elemento, gli altri avranno opacity 0.5
+  &:hover .paragraph-item:not(:hover) {
+    opacity: 0.5;
+  }
+}
+
 
     .paragraph-button {
       cursor: pointer;
-      background-color: #007bff;
-      color: white;
-      padding: 0.5rem 1rem;
+   background-color: white;
       border: none;
       border-radius: 5px;
       margin-bottom: 0.5rem;
+      font-size: var(--link);
+      width: 100%;
+    text-align: left;
     }
 
     .modal-container {
@@ -107,20 +153,38 @@ const paragraphs = servizio.data.paragraphs || [];
         display: flex;
       }
 
+      .container-button{width: 100%; position: relative; padding-bottom: 2rem; padding-bottom: 4.5rem;
+    border-bottom: 1px solid black;}
+      
       .modal-content {
-        background: white;
+        background: var(--ST24-skyyellow);
         padding: 2rem;
-        border-radius: 5px;
         position: relative;
+        margin-left: 40%;
+        height: 100vh;
+        width: 100%;
+        @media(max-width: 768px){
+margin-left: 0;
+        }
+
+        h2{padding-block: 2.5rem; font-size: var(--h3); font-weight: 400;}
+        p{font-size: var(--link);}
       }
 
-      .close-button {
-        cursor: pointer;
-        font-size: 1.5rem;
-        position: absolute;
-        top: 10px;
-        right: 10px;
-      }
+    .close-button {
+  position: absolute;
+  width: 40px; 
+  height: 40px; 
+  border-radius: 50%; 
+  border: 2px solid #333; 
+  background-color: var(--ST24-skyyellow); 
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+right: 0;
+
+}
     }
   }
 </style>
