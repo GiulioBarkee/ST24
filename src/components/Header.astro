@@ -96,7 +96,7 @@ const { header2, header3 } = Astro.props;
 
       &.menu-open {
         @media (max-width: 768px) {
-          max-height: 100vh; 
+          max-height: 100vh;
           overflow-y: auto;
         }
       }
@@ -182,6 +182,9 @@ const { header2, header3 } = Astro.props;
   }
   .header3 {
     background-color: var(--ST24-skygreen);
+    .header__menu-button {
+      border: 2px solid white;
+    }
     a {
       color: white;
     }
@@ -189,8 +192,12 @@ const { header2, header3 } = Astro.props;
       filter: invert(1);
     }
   }
- 
 
+  .header3 .menu-open img {
+    filter: inherit;
+  }
+  .header3 .menu-open  a{color: #333}
+  
   .container {
     padding: var(--padding-viewport);
     padding-top: 0;

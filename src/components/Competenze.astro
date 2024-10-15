@@ -7,12 +7,21 @@ Mauris rhoncus massa sit a neque at bibendum pharetra tincidunt. Mi praesent mas
 
 const action = `I NOSTRI SERVIZI`;
 
-const services = [
-  "Consulenza fiscale",
-  "Consulenza del lavoro",
-  "Consulenza legale",
-  "Risorse Umane",
-];
+// const services = [
+//   "Consulenza fiscale",
+//   "Consulenza del lavoro",
+//   "Consulenza legale",
+//   "Risorse Umane",
+// ];
+
+// Importiamo il componente ServizioSingolo
+import { getCollection } from "astro:content";
+const servizi = await getCollection("servizi");
+
+// Ordiniamo i servizi per assicurare che non ci siano buchi nell'ordine
+const ServiziList = servizi
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(-4); //ultimi 4
 ---
 
 <section class="competence-section">
@@ -37,9 +46,10 @@ const services = [
     <div class="right-column">
       <ul class="service-list">
         {
-          services.map((service, index) => (
+          ServiziList.map((servizio, index) => (
             <li key={index} class="service-item">
-              {service}
+              {" "}
+              <a href={`/servizi/${servizio.slug}`}>{servizio.data.title}</a>
             </li>
           ))
         }
