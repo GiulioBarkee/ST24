@@ -18,12 +18,9 @@ const sedi = [
   },
 ];
 const buttonText = `INVIA`;
-
-
 ---
 
-<section
-  class="contact-section">
+<section class="contact-section">
   <h2>{titolo}</h2>
   <div class="contact-container">
     <!-- Colonna sinistra: Sedi -->
@@ -43,7 +40,7 @@ const buttonText = `INVIA`;
 
     <!-- Colonna destra: Form di contatto -->
     <div class="contact-form">
-      <form>
+      <form class="contact-form">
         <input type="text" name="nome" placeholder="Nome" required />
         <input type="text" name="societa" placeholder="Società" required />
         <input type="email" name="email" placeholder="Email" required />
@@ -53,10 +50,64 @@ const buttonText = `INVIA`;
           {buttonText}
           <span class="button-icon">→</span>
         </button>
+
+        <!-- Messaggi di successo e errore -->
+        <div class="form-message success-message" style="display: none;">
+          Messaggio inviato con successo!
+        </div>
+        <div class="form-message error-message" style="display: none;">
+          Errore nell'invio del messaggio!
+        </div>
       </form>
     </div>
   </div>
 </section>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector(".contact-form form"); // Seleziona il tag form all'interno del contenitore
+    const successMessage = document.querySelector(".success-message");
+    const errorMessage = document.querySelector(".error-message");
+
+    if (form) {
+      form.onsubmit = async (e) => {
+        e.preventDefault(); // Impedisci il comportamento predefinito del form
+        form.querySelector("button[type=submit]").disabled = true; // Disabilita il pulsante di invio
+
+        const formData = new FormData(e.target);
+
+        // Aggiungi campi extra per l'email
+        formData.append("senderName", "ST24");
+        formData.append("senderEmail", "giuliobarchi1@gmail.com"); // Email del mittente
+        formData.append("to", "giulio@amedani.com"); // Email del destinatario
+
+        try {
+          const response = await fetch(
+            "https://amedanistudio.pages.dev/api/form", // Cambia questo URL con il tuo endpoint API
+            {
+              method: "POST",
+              body: formData,
+            }
+          );
+
+          if (response.ok) {
+            form.reset(); // Resetta il form dopo il successo
+            successMessage.style.display = "block"; // Mostra il messaggio di successo
+            errorMessage.style.display = "none"; // Nascondi il messaggio di errore
+            form.querySelector("button[type=submit]").disabled = false; // Riabilita il pulsante di invio
+          } else {
+            throw new Error("Form submission failed");
+          }
+        } catch (error) {
+          console.error(error);
+          errorMessage.style.display = "block"; // Mostra il messaggio di errore
+          successMessage.style.display = "none"; // Nascondi il messaggio di successo
+          form.querySelector("button[type=submit]").disabled = false; // Riabilita il pulsante di invio
+        }
+      };
+    }
+  });
+</script>
 
 <style lang="scss">
   .contact-section {
@@ -128,22 +179,20 @@ const buttonText = `INVIA`;
         background-color: transparent;
         color: #fff;
         font-size: 1rem;
-        line-height: 1.5; /* Assicura che il testo interno e il placeholder siano ben allineati */
-        height: 3rem; /* Imposta la stessa altezza per tutti gli input e textarea */
+        line-height: 1.5;
+        height: 3rem;
 
         &::placeholder {
           color: #fff;
           opacity: 0.7;
-          transform: translateY(0); /* Mantiene il placeholder allineato */
         }
       }
 
       textarea {
-        resize: none; /* Disabilita il ridimensionamento manuale */
-        height: 3rem; /* Stessa altezza degli input */
-        overflow: hidden; /* Nasconde qualsiasi overflow per mantenere l'altezza uniforme */
+        resize: none;
+        height: 3rem;
+        overflow: hidden;
         font-family: "Gambetta", serif;
-        font-style: normal;
       }
 
       .button {
@@ -159,12 +208,13 @@ const buttonText = `INVIA`;
         transition: all 0.3s ease;
         align-self: flex-start;
         margin-top: 2rem;
+
         @media (max-width: 768px) {
           align-self: flex-end;
         }
 
         &:hover {
-          background-color: #fff;
+          background-color: var(--ST24-skyyellow);
           color: var(--ST24-skygreen);
         }
 
@@ -178,5 +228,24 @@ const buttonText = `INVIA`;
         }
       }
     }
+  }
+
+  .form-message {
+    padding: 1rem;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: bold;
+  }
+
+  .success-message {
+    background-color: rgba(0, 255, 136, 0.4);
+    color: var(--ST24-skyyellow);
+    display: none;
+  }
+
+  .error-message {
+    background-color: rgba(255, 0, 0, 0.5);
+    color: var(--ST24-skygreen);
+    display: none;
   }
 </style>

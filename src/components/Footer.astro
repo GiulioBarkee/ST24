@@ -35,11 +35,19 @@ const Privacy = `Privacy policy`;
     <div class="footer__column newsletter">
       <h4>{RimaniAggiornato}</h4>
       <form class="footer__form">
-        <input type="email" placeholder="Email" />
-        <button type="submit" class="button"
-          >{action} <span class="button-icon">→</span></button
-        >
+        <input type="email" name="email" placeholder="Email" required />
+        <button type="submit" class="button">
+          {action}
+          <span class="button-icon">→</span>
+        </button>
       </form>
+      <!-- Messaggio di successo o errore -->
+      <p class="success-message2" style="display: none;">
+        Iscrizione avvenuta con successo!
+      </p>
+      <p class="error-message2" style="display: none;">
+        Si è verificato un errore. Riprovare.
+      </p>
     </div>
   </div>
   <div class="footer__bottom">
@@ -47,6 +55,50 @@ const Privacy = `Privacy policy`;
     <a class="policy-footer" href="">{Privacy}</a>
   </div>
 </footer>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector(".footer__form");
+    const successMessage = document.querySelector(".success-message2");
+    const errorMessage = document.querySelector(".error-message2");
+
+    if (form) {
+      form.onsubmit = async (e) => {
+        e.preventDefault(); // Impedisci il comportamento predefinito del form
+        form.querySelector("button[type=submit]").disabled = true; // Disabilita il pulsante di invio
+
+        const formData = new FormData(e.target);
+        formData.append("senderName", "ST24 Newsletter");
+        formData.append("senderEmail", "giuliobbarchi1@gmail.com"); // Email del mittente
+        formData.append("to", "giulio@amedani.com"); // Email del destinatario
+
+        try {
+          const response = await fetch(
+            "https://amedanistudio.pages.dev/api/form", // Endpoint API
+            {
+              method: "POST",
+              body: formData,
+            }
+          );
+
+          if (response.ok) {
+            form.reset(); // Resetta il form dopo il successo
+            successMessage.style.display = "block"; // Mostra il messaggio di successo
+            errorMessage.style.display = "none"; // Nascondi il messaggio di errore
+          } else {
+            throw new Error("Form submission failed");
+          }
+        } catch (error) {
+          console.error(error);
+          errorMessage.style.display = "block"; // Mostra il messaggio di errore
+          successMessage.style.display = "none"; // Nascondi il messaggio di successo
+        } finally {
+          form.querySelector("button[type=submit]").disabled = false; // Riabilita il pulsante di invio
+        }
+      };
+    }
+  });
+</script>
 
 <style lang="scss">
   .footer {
@@ -158,7 +210,7 @@ const Privacy = `Privacy policy`;
           }
 
           &:hover {
-            background-color: #fff;
+            background-color: var(--ST24-skyyellow);
             color: var(--ST24-skygreen);
           }
 
