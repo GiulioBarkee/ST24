@@ -46,6 +46,9 @@ if (limit !== undefined) {
         </a>
       ))
     }
+    <a href="/storie" class="action-button2">
+      TUTTI GLI ARTICOLI <span class="button-icon">→</span>
+    </a>
   </div>
 </section>
 
@@ -79,7 +82,7 @@ if (limit !== undefined) {
       align-self: flex-start;
 
       @media (max-width: 768px) {
-        align-self: flex-end;
+        display: none;
       }
 
       .button-icon {
@@ -150,6 +153,24 @@ if (limit !== undefined) {
       .news-title {
         text-decoration: underline;
       }
+    }
+  }
+  .action-button2 {
+    justify-content: flex-end;
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #333;
+    border-radius: 50px;
+    font-size: 1rem;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    width: fit-content;
+    justify-self: end ;
+    margin-top: 3rem;
+    @media (min-width: 768px) {
+      display: none;
     }
   }
 </style>

@@ -21,17 +21,32 @@ const { header2, header3 } = Astro.props;
 
     <!-- Menu di Navigazione -->
     <nav class="header__nav" id="menu">
-      <ul class="header__menu">
-        {
-          menuItems.map((item) => (
-            <li key={item.name} class="header__menu-item">
-              <a href={item.href} class="header__menu-link">
-                {item.name}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
+      <div class="container">
+        <ul class="header__menu">
+          {
+            menuItems.map((item) => (
+              <li key={item.name} class="header__menu-item">
+                <a href={item.href} class="header__menu-link">
+                  {item.name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="social">
+          <div class="icons">
+            <a href=""><img src="/assets/cell.png" alt="" /></a>
+            <a href=""><img src="/assets/posta.png" alt="" /></a>
+          </div>
+          <div class="social2">
+            <h4 class="social-right">Social</h4>
+            <div class="link-social">
+              <a href="">Linkedin</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </nav>
 
     <!-- Pulsante Menu -->
@@ -53,7 +68,8 @@ const { header2, header3 } = Astro.props;
     padding-bottom: 5rem;
     z-index: 1;
     @media (max-width: 768px) {
-      padding-top: 5rem;
+      padding-top: 3.5rem;
+      height: 4rem;
     }
 
     &.menu-open {
@@ -68,7 +84,7 @@ const { header2, header3 } = Astro.props;
     &__nav {
       @media (max-width: 768px) {
         position: absolute;
-        top: 10rem;
+        top: 8.2rem;
         left: 0;
         width: 100%;
         background-color: var(--ST24-skyyellow);
@@ -80,7 +96,8 @@ const { header2, header3 } = Astro.props;
 
       &.menu-open {
         @media (max-width: 768px) {
-          max-height: 100vh; // Mostra il
+          max-height: 100vh; 
+          overflow-y: auto;
         }
       }
     }
@@ -93,10 +110,11 @@ const { header2, header3 } = Astro.props;
 
       @media (max-width: 768px) {
         flex-direction: column;
-        height: 100vh;
-        padding: var(--padding-viewport);
-        gap: 3rem;
-        padding-top: 8rem;
+        height: fit-content;
+        // padding: var(--padding-viewport);
+        padding-block: 3rem;
+        gap: 0.5rem;
+        border-top: 1px solid var(--ST24-skygreen);
       }
     }
 
@@ -115,19 +133,18 @@ const { header2, header3 } = Astro.props;
     &__menu-link {
       text-decoration: none;
       color: #333333;
-      font-weight: 500;
+      font-weight: 400;
       transition: color 0.3s ease;
       font-size: var(--link);
       line-height: 2rem;
       @media (max-width: 768px) {
-        font-size: 3.5rem;
+        font-size: 2.5rem;
       }
 
       &:hover {
         color: #007bff;
       }
     }
-    
 
     /* Stili per il pulsante Menu */
     &__menu-button {
@@ -143,6 +160,7 @@ const { header2, header3 } = Astro.props;
 
       @media (max-width: 768px) {
         display: block;
+        font-size: 1rem;
       }
     }
 
@@ -164,8 +182,56 @@ const { header2, header3 } = Astro.props;
   }
   .header3 {
     background-color: var(--ST24-skygreen);
-    a{color: white;}
-    img{filter: invert(1);}
+    a {
+      color: white;
+    }
+    img {
+      filter: invert(1);
+    }
+  }
+ 
+
+  .container {
+    padding: var(--padding-viewport);
+    padding-top: 0;
+    padding-bottom: 18rem;
+    @media (min-width: 768px) {
+      padding: inherit;
+      padding-top: inherit;
+      padding-bottom: inherit;
+    }
+    .social {
+      display: flex;
+      justify-content: space-between;
+      @media (min-width: 768px) {
+        display: none;
+      }
+      .icons {
+        display: flex;
+        gap: 1.8rem;
+        height: fit-content;
+        a {
+          border: 1px solid black;
+          padding: 0.6rem;
+          border-radius: 100%;
+          align-items: center;
+          display: flex;
+          img {
+            width: 1.5rem;
+          }
+        }
+      }
+    }
+    .social2 {
+      line-height: 3rem;
+      .social-right {
+        font-size: 1.5rem;
+        font-weight: 400;
+      }
+      .link-social a {
+        font-size: 1.2rem;
+      }
+    }
   }
 </style>
 

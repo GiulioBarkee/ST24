@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 
-const {limit} = Astro.props
+const { limit } = Astro.props;
 let circolariList = await getCollection("circolari");
 circolariList.sort(
   (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
@@ -10,6 +10,8 @@ circolariList.sort(
 if (limit !== undefined) {
   circolariList = circolariList.slice(0, limit);
 }
+
+const { action } = Astro.props;
 ---
 
 <section>
@@ -28,13 +30,18 @@ if (limit !== undefined) {
           <h3 class="circolare-title">{circolare.data.title}</h3>
         </a>
       ))
-      
     }
+    <a href="" class="action-button">
+      TUTTE LE CIRCOLARI
+      <span class="button-icon">→</span>
+    </a>
   </div>
 </section>
+
 <style lang="scss">
   section {
     padding: var(--padding-viewport);
+    .news-grid{display: flex ; flex-flow: column;}
     .circolare {
       display: flex;
       flex-flow: column;
@@ -46,6 +53,23 @@ if (limit !== undefined) {
       }
       h3 {
         margin-bottom: 1rem;
+      }
+    }
+    .action-button {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+      border: 2px solid #333;
+      border-radius: 50px;
+      font-size: 1rem;
+      color: #333;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      margin-top: 3rem;
+      align-self: flex-end;
+
+      @media (min-width: 768px) {
+        display: none;
       }
     }
   }

@@ -8,21 +8,21 @@ const ServiziList = servizi.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <section class="servizi-list">
-    {
-      ServiziList.map((servizio, index) => (
-        <a
-          href={`/servizi/${servizio.slug}`}
-          class="servizio-item"
-          key={servizio.id}
-        >
-          <span class="servizio-number">
-            {String(servizio.data.order).padStart(2, "0")}
-          </span>
-          <span class="servizio-title">{servizio.data.title}</span>
-          <span class="servizio-arrow">→</span>
-        </a>
-      ))
-    }
+  {
+    ServiziList.map((servizio, index) => (
+      <a
+        href={`/servizi/${servizio.slug}`}
+        class="servizio-item"
+        key={servizio.id}
+      >
+        <span class="servizio-number">
+          {String(servizio.data.order).padStart(2, "0")}
+        </span>
+        <span class="servizio-title">{servizio.data.title}</span>
+        <span class="servizio-arrow">→</span>
+      </a>
+    ))
+  }
 </section>
 
 <style lang="scss">
@@ -42,7 +42,6 @@ const ServiziList = servizi.sort((a, b) => a.data.order - b.data.order);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-block: 2rem;
     border-bottom: 1px solid #a3a3a3;
     text-decoration: none;
     color: inherit;
@@ -53,9 +52,14 @@ const ServiziList = servizi.sort((a, b) => a.data.order - b.data.order);
     position: relative;
     overflow: hidden; /* Necessario per l'animazione del background */
     z-index: 1; /* Posiziona il contenuto sopra l'animazione */
+    padding: var(--padding-viewport);
+    padding-block: 2rem;
 
     .servizio-number {
       width: 10%;
+  @media (max-width: 768px) {
+    display: none;
+  }
     }
 
     .servizio-title {
