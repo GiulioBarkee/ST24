@@ -8,11 +8,22 @@ const { Content } = await persona.render();
     <span class="title">{persona.data.title}</span>
     <span class="role">{persona.data.role}</span>
   </div>
+
+  <!-- Modale associato -->
   <div class="modal-container">
     <div class="right-panel">
-      <img src={persona.data.img} alt={persona.data.name} />
-      <div class="contain-text">
-        <Content />
+      <!-- Aggiunta del pulsante di chiusura -->
+      <div class="container-button">
+        <span class="close-button">✕</span>
+      </div>
+      <div class="container-content">
+        <img src={persona.data.img} alt={persona.data.name} />
+        <div class="contain-text">
+          <p>{persona.data.title}</p>
+          <div class="content">
+            <Content />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -20,21 +31,28 @@ const { Content } = await persona.render();
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
+    // Funzionalità per l'apertura e chiusura del modale
     document.querySelectorAll(".person-item").forEach((personItem) => {
       const button = personItem.querySelector(".modal-button");
       const modal = personItem.querySelector(".modal-container");
+      const closeButton = personItem.querySelector(".close-button");
 
       // Verifica che entrambi gli elementi esistano
-      if (button && modal) {
+      if (button && modal && closeButton) {
         // Apri il modale al click del bottone
         button.addEventListener("click", () => {
-          modal.classList.add("selected");
+          modal.classList.add("open");
+        });
+
+        // Chiudi il modale al click della X
+        closeButton.addEventListener("click", () => {
+          modal.classList.remove("open");
         });
 
         // Chiudi il modale se clicchi fuori dal contenuto
         modal.addEventListener("click", (event) => {
           if (event.target.classList.contains("modal-container")) {
-            modal.classList.remove("selected");
+            modal.classList.remove("open");
           }
         });
       }
@@ -48,7 +66,6 @@ const { Content } = await persona.render();
     padding-block: 1rem;
     border-bottom: 1px solid #dedede;
     position: relative;
-    text-wrap: balance;
 
     .modal-button {
       cursor: pointer;
@@ -88,33 +105,84 @@ const { Content } = await persona.render();
       right: 0;
       bottom: 0;
       background: rgba(0, 0, 0, 0.5);
-      overscroll-behavior: none;
-      overflow: auto;
-      justify-content: flex-end;
+      justify-content: center;
+      align-items: center;
       z-index: 1000;
-      height: 100%;
 
-      &.selected {
+      &.open {
         display: flex;
       }
 
       .right-panel {
         flex: 0.75;
         background: var(--ST24-skyyellow);
-        padding: 1rem;
+        padding: 2rem;
+        position: relative;
+        height: 100vh;
+        width: 100%;
         overflow: auto;
-        overscroll-behavior: none;
         display: flex;
+        flex-direction: column;
+        position: absolute;
+        width: 70%;
+        right: 0;
+        @media (max-width: 768px) {
+          width: 100%;
+        }
 
+        .container-content {
+          display: flex;
+          gap: 2rem;
+          padding-top: 2.5rem;
+          height: 100%;
+          @media (max-width: 768px) {
+            flex-flow: column;
+          }
+        }
         img {
           aspect-ratio: 3 / 4;
           object-fit: cover;
-          width: 60%;
-          height: 70%;
+          width: 45%;
+          height: auto;
+          margin-bottom: 2rem;
+          @media (max-width: 768px) {
+            width: 100%;
+          }
         }
+
         .contain-text {
           display: flex;
           flex-flow: column;
+          width: 100%;
+          p {
+            font-size: 2rem;
+            padding-bottom: 2rem;
+          }
+          .content {
+            font-size: 1.2rem;
+            font-weight: 400;
+          }
+        }
+
+        .container-button {
+          position: relative;
+          width: 100%;
+          padding-bottom: 2.5rem;
+          border-bottom: 1px solid black;
+          display: flex;
+          justify-content: flex-end;
+        }
+
+        .close-button {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          border: 2px solid #333;
+          background-color: var(--ST24-skyyellow);
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
       }
     }

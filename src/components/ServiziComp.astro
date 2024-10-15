@@ -14,6 +14,7 @@ const ServiziList = servizi.sort((a, b) => a.data.order - b.data.order);
         href={`/servizi/${servizio.slug}`}
         class="servizio-item"
         key={servizio.id}
+        data-number={String(servizio.data.order).padStart(2, "0")}
       >
         <span class="servizio-number">
           {String(servizio.data.order).padStart(2, "0")}
@@ -24,6 +25,8 @@ const ServiziList = servizi.sort((a, b) => a.data.order - b.data.order);
     ))
   }
 </section>
+
+
 
 <style lang="scss">
   section {
@@ -57,14 +60,15 @@ const ServiziList = servizi.sort((a, b) => a.data.order - b.data.order);
 
     .servizio-number {
       width: 10%;
-  @media (max-width: 768px) {
-    display: none;
-  }
+      @media (max-width: 768px) {
+        display: none;
+      }
     }
 
     .servizio-title {
       width: 60%;
       text-align: left;
+
     }
 
     .servizio-arrow {
