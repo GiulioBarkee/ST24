@@ -137,12 +137,28 @@ const { header2, header3 } = Astro.props;
       transition: color 0.3s ease;
       font-size: var(--link);
       line-height: 2rem;
+      position: relative; /* Posiziona il pseudo-elemento */
+
       @media (max-width: 768px) {
         font-size: 2.5rem;
       }
 
-      &:hover {
-        color: #007bff;
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -2px; /* Distanza dal testo */
+        width: 100%;
+        height: 1.5px; /* Spessore della sottolineatura */
+        background-color: #000; /* Colore della sottolineatura */
+        transform: scaleX(0); /* Inizialmente nascosta */
+        transition: transform 0.5s ease; /* Durata dell'animazione */
+        transform-origin: right;
+      }
+
+      &:hover::after {
+        transform: scaleX(1);
+        transform-origin: left; /* Durante l'hover parte da sinistra */
       }
     }
 
@@ -196,8 +212,10 @@ const { header2, header3 } = Astro.props;
   .header3 .menu-open img {
     filter: inherit;
   }
-  .header3 .menu-open  a{color: #333}
-  
+  .header3 .menu-open a {
+    color: #333;
+  }
+
   .container {
     padding: var(--padding-viewport);
     padding-top: 0;
