@@ -11,8 +11,6 @@ const p = `Egestas auctor quis cursus vulputate. Quis lacus at augue sit nunc. M
 Ut quam consequat tellus scelerisque pharetra phasellus sagittis porta feugiat. Nam tellus viverra id quis praesent viverra ultrices.`;
 
 const action = `CONOSCI LO STUDIO`;
-
-
 ---
 
 <section class="hero">
@@ -27,7 +25,7 @@ const action = `CONOSCI LO STUDIO`;
     <p>{p}</p>
     <a href="#" class="button">
       {action}
-      <span class="button-icon">→</span>
+      <img class="button-icon" src="/assets/arrow-right.png" alt="" />
     </a>
   </div>
 </section>
@@ -54,56 +52,106 @@ const action = `CONOSCI LO STUDIO`;
     .hero-img {
       margin-bottom: 5rem;
     }
-   .hero-action {
-  margin-left: 13rem;
-  width: 70%;
-  margin-bottom: 5rem;
+    .hero-action {
+      margin-left: 13rem;
+      width: 70%;
+      margin-bottom: 5rem;
 
-  /* Applica Flexbox per l'allineamento del pulsante */
-  display: flex;
-  flex-direction: column; /* Disposizione degli elementi in colonna */
-  align-items: flex-start; /* Per allineare inizialmente a sinistra */
+      /* Applica Flexbox per l'allineamento del pulsante */
+      display: flex;
+      flex-direction: column; /* Disposizione degli elementi in colonna */
+      align-items: flex-start; /* Per allineare inizialmente a sinistra */
 
-  @media (max-width: 768px) {
-    margin-left: 0;
-    width: 100%;
-    justify-content: flex-end; /* Allinea a destra il pulsante */
-    align-items: flex-end; /* Assicura che il pulsante sia a destra */
-  }
+      @media (max-width: 768px) {
+        margin-left: 0;
+        width: 100%;
+        justify-content: flex-end; /* Allinea a destra il pulsante */
+        align-items: flex-end; /* Assicura che il pulsante sia a destra */
+      }
 
-  p {
-    font-size: clamp(0.6rem, 4vw, 1.7rem);
-    color: #7e7e7e;
-    margin-bottom: 3rem;
-  }
-}
+      p {
+        font-size: clamp(0.6rem, 4vw, 1.7rem);
+        color: #7e7e7e;
+        margin-bottom: 3rem;
+      }
+    }
 
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1.5rem;
-  border: 2px solid #4c4c4c; /* Colore del bordo */
-  border-radius: 50px; /* Bordo arrotondato */
-  color: #4c4c4c; /* Colore del testo */
-  font-size: 1rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.3s ease;
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.5rem;
+      border: 2px solid #4c4c4c;
+      border-radius: 50px;
+      color: #4c4c4c;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      transition: color 0.3s ease;
 
-  &:hover {
-    background-color: #4c4c4c; /* Cambia il colore di sfondo al passaggio del mouse */
-    color: #fff; /* Cambia il colore del testo al passaggio del mouse */
-  }
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #4c4c4c;
+        z-index: -1;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+      }
 
-  .button-icon {
-    margin-left: 0.5rem; /* Spazio tra il testo e l'icona */
-    transition: transform 0.3s ease;
-  }
+      &:hover::before {
+        transform: scaleX(1);
+      }
 
-  &:hover .button-icon {
-    transform: translateX(5px); /* Anima l'icona quando si passa con il mouse */
-  }
-}
+      &:hover {
+        color: #fff;
+      }
+
+      .button-icon {
+        margin-left: 0.5rem;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+        width: 1.3rem;
+      }
+
+      /* Quando si passa sopra il pulsante, la freccia si sposta verso destra */
+      &:hover .button-icon {
+        transform: translateX(50px); /* Sposta la freccia verso destra */
+        opacity: 0; /* Nasconde la freccia */
+        animation: reappear 0.1s 0.3s forwards; /* Ricompare dopo 0.5s */
+        filter: invert(0.99);
+      }
+
+      @keyframes reappear {
+        0% {
+          transform: translateX(
+            -50px
+          ); /* Inizia da sinistra fuori dal pulsante */
+          opacity: 0; /* Invisibile */
+        }
+        100% {
+          transform: translateX(0); /* Torna alla posizione originale */
+          opacity: 1; /* Ricompare gradualmente */
+        }
+      }
+
+      &:not(:hover) .button-icon {
+        transform: translateX(0); /* Ripristina la posizione iniziale */
+        opacity: 1; /* Ripristina l'opacità iniziale */
+      }
+
+      &:not(:hover)::before {
+        transform: scaleX(0);
+        transform-origin: right;
+      }
+    }
   }
 </style>

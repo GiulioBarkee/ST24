@@ -26,8 +26,6 @@ const ServiziList = servizi.sort((a, b) => a.data.order - b.data.order);
   }
 </section>
 
-
-
 <style lang="scss">
   section {
     background-color: var(--ST24-skyazure);
@@ -68,30 +66,32 @@ const ServiziList = servizi.sort((a, b) => a.data.order - b.data.order);
     .servizio-title {
       width: 60%;
       text-align: left;
-
     }
 
     .servizio-arrow {
       font-size: 2.5rem;
     }
 
-    /* Pseudo-elemento per l'animazione del background */
     &::before {
       content: "";
       position: absolute;
-      top: 0;
-      left: -100%; /* Partenza a sinistra dell'elemento */
+      left: 0;
+      bottom: -100%; /* Inizialmente parte dal basso fuori dall'elemento */
       width: 100%;
       height: 100%;
       background-color: var(
         --ST24-skyyellow
       ); /* Colore del background all'hover */
-      transition: left 0.5s ease; /* Tempo e stile della transizione */
+      transition: bottom 0.5s ease; /* Transizione da basso a alto */
       z-index: -1; /* Dietro il contenuto dell'elemento */
+      border-top-left-radius: 90px;
+      border-top-right-radius: 90px;
     }
 
     &:hover::before {
-      left: 0; /* Sposta l'elemento pseudo da sinistra a destra */
+      bottom: 0; /* Sposta il background verso l'alto durante l'hover */
+      border-radius: 0;
+      transition: all 0.5s cubic-bezier(.215, .61, .355, 1);
     }
   }
 </style>
