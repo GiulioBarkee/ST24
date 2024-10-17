@@ -20,8 +20,9 @@ if (limit !== undefined) {
     !hideHeader && (
       <div class="news-header">
         <h2>{titleNews}</h2>
-        <a href="/storie" class="action-button">
-          TUTTI GLI ARTICOLI <span class="button-icon">→</span>
+        <a href="/storie" class="button button1">
+          TUTTI GLI ARTICOLI{" "}
+          <img class="button-icon" src="/assets/arrow-right.png" alt="" />
         </a>
       </div>
     )
@@ -46,9 +47,14 @@ if (limit !== undefined) {
         </a>
       ))
     }
-    <a href="/storie" class="action-button2">
-      TUTTI GLI ARTICOLI <span class="button-icon">→</span>
-    </a>
+    {
+      !hideHeader && (
+        <a href="/storie" class="button button2">
+          TUTTI GLI ARTICOLI
+          <img class="button-icon" src="/assets/arrow-right.png" alt="" />
+        </a>
+      )
+    }
   </div>
 </section>
 
@@ -71,37 +77,6 @@ if (limit !== undefined) {
       font-weight: 400;
       margin: 0;
     }
-
-    .action-button {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.75rem 1.5rem;
-      border: 2px solid #333;
-      border-radius: 50px;
-      font-size: 1rem;
-      color: #333;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      align-self: flex-start;
-
-      @media (max-width: 768px) {
-        display: none;
-      }
-
-      .button-icon {
-        margin-left: 0.5rem;
-        transition: transform 0.3s ease;
-      }
-
-      &:hover {
-        background-color: #333;
-        color: #fff;
-
-        .button-icon {
-          transform: translateX(5px);
-        }
-      }
-    }
   }
 
   .news-grid {
@@ -111,6 +86,7 @@ if (limit !== undefined) {
 
     @media (max-width: 768px) {
       grid-template-columns: 1fr;
+      margin-top: 3rem;
     }
   }
 
@@ -158,23 +134,22 @@ if (limit !== undefined) {
       }
     }
   }
-  .action-button2 {
-    justify-content: flex-end;
-    display: flex;
-    align-items: center;
-    padding: 0.75rem 1.5rem;
-    border: 2px solid #333;
-    border-radius: 50px;
-    font-size: 1rem;
-    color: #333;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    width: fit-content;
-    justify-self: end;
-    margin-top: 3rem;
-    @media (min-width: 768px) {
+
+  /* Pulsanti su mobile */
+  @media (max-width: 768px) {
+    .button1 {
       display: none;
-      margin: 2rem;
+    }
+    .button2 {
+      justify-self: flex-end;
+      width: fit-content;
+    }
+  }
+
+  /* Pulsanti su desktop */
+  @media (min-width: 769px) {
+    .button2 {
+      display: none;
     }
   }
 </style>

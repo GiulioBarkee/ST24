@@ -5,9 +5,9 @@ const t = `Circolari`;
 
 <section class="circolari-section">
   <h3>{t}</h3>
-  <a href="" class="action-button">
+  <a href="" class="button">
     {action}
-    <span class="button-icon">→</span>
+    <img class="button-icon" src="/assets/arrow-right.png" alt="" />
   </a>
 </section>
 
@@ -27,29 +27,13 @@ const t = `Circolari`;
     font-size: var(--h2);
     font-weight: 400;
     color: #333;
-  
   }
 
-  .action-button {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.75rem 1.5rem;
-    border: 2px solid #333;
-    border-radius: 50px;
-    font-size: 1rem;
-    color: #333;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    align-self: flex-start;
-
+  .button {
     @media (max-width: 768px) {
       display: none;
     }
 
-    .button-icon {
-      margin-left: 0.5rem;
-      transition: transform 0.3s ease;
-    }
 
     &:hover {
       background-color: #333;

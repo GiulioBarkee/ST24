@@ -91,7 +91,10 @@ const ServiziList = servizi.sort((a, b) => a.data.order - b.data.order);
     &:hover::before {
       bottom: 0; /* Sposta il background verso l'alto durante l'hover */
       border-radius: 0;
-      transition: all 0.5s cubic-bezier(.215, .61, .355, 1);
+      transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+      @media (max-width: 768px) {
+        transition: all 0.1s cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
     }
   }
 </style>

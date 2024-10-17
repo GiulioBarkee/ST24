@@ -91,9 +91,16 @@ const paragraphs = servizio.data.paragraphs || [];
 <style lang="scss">
   h1{padding: var(--padding-viewport); font-size: var(--h2);
     color: var(--ST24-skygreen);
-    font-weight: 500; background-color: var(--ST24-skyazure); padding-bottom: 3rem;}
+    font-weight: 500; background-color: var(--ST24-skyazure); padding-bottom: 3rem;
+  @media (max-width: 768px) {
+    padding-bottom: var(--padding-viewport);
+  }}
   section{padding: var(--padding-viewport);
-  .descrizione-servizio{font-size: 1.2rem; opacity: 0.8; padding-bottom: 3rem;}
+    @media (max-width: 768px) {
+      padding-block: 4rem;
+    }
+  .descrizione-servizio{font-size: 1.2rem; opacity: 0.8; padding-bottom: 3rem;
+}
 
 .grid {
   display: flex;
@@ -148,12 +155,13 @@ const paragraphs = servizio.data.paragraphs || [];
       justify-content: center;
       align-items: center;
       z-index: 1000;
+      overflow-y: auto;
 
       &.open {
         display: flex;
       }
 
-      .container-button{width: 100%; position: relative; padding-bottom: 2rem; padding-bottom: 4.5rem;
+      .container-button{width: 100%; position: relative;  padding-bottom: 4.5rem;
     border-bottom: 1px solid black;}
       
       .modal-content {
@@ -161,7 +169,8 @@ const paragraphs = servizio.data.paragraphs || [];
         padding: 2rem;
         position: relative;
         margin-left: 40%;
-        height: 100vh;
+        height: fit-content;
+      min-height: 100vh;
         width: 100%;
         @media(max-width: 768px){
 margin-left: 0;

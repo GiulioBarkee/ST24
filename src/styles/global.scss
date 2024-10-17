@@ -147,3 +147,95 @@ video {
 }
 
 astro-dev-toolbar{display: none;}
+
+
+// BUTTON
+// global.scss
+
+$button-color: #4c4c4c;
+$button-hover-color: #fff;
+$button-border-radius: 50px;
+$button-padding: 0.75rem 1.5rem;
+$button-font-size: 1.1rem;
+$button-font-weight: 500;
+$button-background-hover: #4c4c4c;
+$button-transition-duration: 0.3s;
+$button-icon-move: 50px;
+$button-icon-transition-delay: 0.3s;
+$button-font-family: 'Aspekta';
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $button-padding;
+  border: 1px solid $button-color;
+  border-radius: $button-border-radius;
+  color: $button-color;
+  font-size: $button-font-size;
+  font-weight: $button-font-weight;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color $button-transition-duration ease;
+  font-family: $button-font-family;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $button-background-hover;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform $button-transition-duration ease;
+  }
+
+  &:hover::before {
+    transform: scaleX(1);
+  }
+
+  &:hover {
+    color: $button-hover-color;
+  }
+
+  .button-icon {
+    margin-left: 0.3rem;
+    transition: transform $button-transition-duration ease,
+      opacity $button-transition-duration ease;
+    width: 1.3rem;
+  }
+
+  &:hover .button-icon {
+    transform: translateX($button-icon-move);
+    opacity: 0;
+    animation: reappear 0.1s $button-icon-transition-delay forwards;
+    filter: invert(0.99);
+  }
+
+  @keyframes reappear {
+    0% {
+      transform: translateX(-$button-icon-move);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  &:not(:hover) .button-icon {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  &:not(:hover)::before {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+}

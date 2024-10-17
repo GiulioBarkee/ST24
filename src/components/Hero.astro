@@ -23,7 +23,7 @@ const action = `CONOSCI LO STUDIO`;
   </div>
   <div class="hero-action">
     <p>{p}</p>
-    <a href="#" class="button">
+    <a href="/studio" class="button">
       {action}
       <img class="button-icon" src="/assets/arrow-right.png" alt="" />
     </a>
@@ -44,8 +44,10 @@ const action = `CONOSCI LO STUDIO`;
       p {
         white-space: pre-line;
         color: #7e7e7e;
-      font-size: clamp(1rem,4.5vw,1.7rem);
+        font-size: clamp(1rem, 4.5vw, 1.7rem);
         margin-bottom: 5rem;
+        font-family: Aspekta;
+        line-height: 1.3;
         @media (max-width: 768px) {
           margin-bottom: 3rem;
         }
@@ -79,84 +81,8 @@ const action = `CONOSCI LO STUDIO`;
         font-size: clamp(0.6rem, 4vw, 1.7rem);
         color: #7e7e7e;
         margin-bottom: 3rem;
-      }
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.75rem 1.5rem;
-      border: 1px solid #4c4c4c;
-      border-radius: 50px;
-      color: #4c4c4c;
-      font-size: 1rem;
-      font-weight: 500;
-      text-decoration: none;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-      transition: color 0.3s ease;
-
-      &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #4c4c4c;
-        z-index: -1;
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.3s ease;
-      }
-
-      &:hover::before {
-        transform: scaleX(1);
-      }
-
-      &:hover {
-        color: #fff;
-      }
-
-      .button-icon {
-        margin-left: 0.3rem;
-        transition:
-          transform 0.3s ease,
-          opacity 0.3s ease;
-        width: 1.3rem;
-      }
-
-      /* Quando si passa sopra il pulsante, la freccia si sposta verso destra */
-      &:hover .button-icon {
-        transform: translateX(50px); /* Sposta la freccia verso destra */
-        opacity: 0; /* Nasconde la freccia */
-        animation: reappear 0.1s 0.3s forwards; /* Ricompare dopo 0.5s */
-        filter: invert(0.99);
-      }
-
-      @keyframes reappear {
-        0% {
-          transform: translateX(
-            -50px
-          ); /* Inizia da sinistra fuori dal pulsante */
-          opacity: 0; /* Invisibile */
-        }
-        100% {
-          transform: translateX(0); /* Torna alla posizione originale */
-          opacity: 1; /* Ricompare gradualmente */
-        }
-      }
-
-      &:not(:hover) .button-icon {
-        transform: translateX(0); /* Ripristina la posizione iniziale */
-        opacity: 1; /* Ripristina l'opacità iniziale */
-      }
-
-      &:not(:hover)::before {
-        transform: scaleX(0);
-        transform-origin: right;
+        font-family: Aspekta;
+        line-height: 1.3;
       }
     }
   }

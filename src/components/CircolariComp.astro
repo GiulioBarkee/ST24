@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 
-const { limit } = Astro.props;
+const { hideHeader, limit } = Astro.props;
 let circolariList = await getCollection("circolari");
 circolariList.sort(
   (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
@@ -29,10 +29,14 @@ if (limit !== undefined) {
         </a>
       ))
     }
-    <a href="" class="action-button">
-      TUTTE LE CIRCOLARI
-      <span class="button-icon">→</span>
-    </a>
+    {
+      !hideHeader && (
+        <a href="" class="button">
+          TUTTE LE CIRCOLARI
+          <img class="button-icon" src="/assets/arrow-right.png" alt="" />
+        </a>
+      )
+    }
   </div>
 </section>
 
@@ -63,22 +67,14 @@ if (limit !== undefined) {
         margin-bottom: 1rem;
       }
     }
-    .action-button {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.75rem 1.5rem;
-      border: 2px solid #333;
-      border-radius: 50px;
-      font-size: 1rem;
-      color: #333;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      margin-top: 3rem;
-      align-self: flex-end;
+    .button {
       @media (max-width: 768px) {
         margin-bottom: 5rem;
+        margin-bottom: 5rem;
+        width: fit-content;
+        align-self: flex-end;
+        margin-top: 3rem;
       }
-
       @media (min-width: 768px) {
         display: none;
       }

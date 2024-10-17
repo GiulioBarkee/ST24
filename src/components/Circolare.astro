@@ -21,16 +21,24 @@ const { circolare } = Astro.props;
 <style lang="scss">
   section {
     padding: var(--padding-viewport);
+    font-family: "Aspekta";
+    @media (max-width: 768px) {
+      padding-bottom: 5rem;
+    }
     .circolare-date {
-      font-weight: bold;
+      font-weight: 500;
       color: #555;
     }
     .circolare-title {
       margin: 0.5rem 0;
       font-size: 1.5rem;
+      font-weight: 500;
+      padding-bottom: 1rem;
+      color:#4C4C4C;
     }
     .circolare-body {
-      color: #333;
+      color: #7e7e7e;
+      font-size: 1.1rem;
     }
   }
 </style>
