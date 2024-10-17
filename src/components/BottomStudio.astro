@@ -31,7 +31,7 @@ const {
       <p>{paragraph}</p>
       <a href={actionLink} class="button">
         {actionText}
-        <span class="button-icon">→</span>
+        <img class="button-icon" src="/assets/arrow-right.png" alt="" />
       </a>
     </div>
   </div>
@@ -109,18 +109,12 @@ const {
           align-self: flex-end;
         }
 
-        &:hover {
+        &::before {
           background-color: #4c4c4c;
+        }
+
+        &:hover {
           color: #fff;
-        }
-
-        .button-icon {
-          margin-left: 0.5rem;
-          transition: transform 0.3s ease;
-        }
-
-        &:hover .button-icon {
-          transform: translateX(5px);
         }
       }
 

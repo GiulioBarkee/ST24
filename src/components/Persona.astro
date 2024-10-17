@@ -95,9 +95,12 @@ const { Content } = await persona.render();
         }
         .role {
           font-size: 1.1rem;
-          align-self: flex-end;
           display: flex;
+          justify-content: center;
+          align-self: center;
+        @media (max-width: 768px) {
           justify-content: flex-end;
+        }
         }
 
         .role {
