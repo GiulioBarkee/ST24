@@ -10,7 +10,6 @@ circolariList.sort(
 if (limit !== undefined) {
   circolariList = circolariList.slice(0, limit);
 }
-
 ---
 
 <section>
@@ -40,13 +39,23 @@ if (limit !== undefined) {
 <style lang="scss">
   section {
     padding: var(--padding-viewport);
-    .news-grid{display: flex ; flex-flow: column;}
+    .news-grid {
+      display: flex;
+      flex-flow: column;
+    }
     .circolare {
       display: flex;
       flex-flow: column;
       gap: 1rem;
       border-bottom: 1px solid #dedede;
       margin-top: 1rem;
+      .circolare-category {
+        margin-right: 2rem;
+      }
+      .circolare-title {
+        font-size: 1.1rem;
+        font-weight: 500;
+      }
       .li {
         list-style-type: disc;
       }
@@ -66,6 +75,9 @@ if (limit !== undefined) {
       transition: all 0.3s ease;
       margin-top: 3rem;
       align-self: flex-end;
+      @media (max-width: 768px) {
+        margin-bottom: 5rem;
+      }
 
       @media (min-width: 768px) {
         display: none;

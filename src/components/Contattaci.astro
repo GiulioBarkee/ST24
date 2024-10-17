@@ -29,7 +29,7 @@ const buttonText = `INVIA`;
         {
           sedi.map((sede) => (
             <div class="sede">
-              <h3>{sede.citta}</h3>
+              <p>{sede.citta}</p>
               <p>{sede.indirizzo}</p>
               {sede.telefono && <p>{sede.telefono}</p>}
             </div>
@@ -146,17 +146,20 @@ const buttonText = `INVIA`;
         margin-top: 2rem;
         opacity: 0.9;
 
-        h3 {
+        p {
           margin-bottom: 0.5rem;
           font-size: 1.2rem;
-          margin-bottom: 0.5rem;
           font-weight: 400;
+          @media (max-width: 768px) {
+            margin-bottom: 0;            
+          }
         }
 
         p {
           margin: 0;
-          font-size: 1rem;
+          font-size: 1.2rem;
           line-height: 1.6;
+
         }
       }
     }

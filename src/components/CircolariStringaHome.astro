@@ -18,12 +18,16 @@ const t = `Circolari`;
     align-items: center;
     padding: var(--padding-viewport);
     padding-bottom: 0;
+    @media (max-width: 768px) {
+      margin-top: 3rem;
+    }
   }
 
   h3 {
     font-size: var(--h2);
     font-weight: 400;
     color: #333;
+  
   }
 
   .action-button {
@@ -39,7 +43,7 @@ const t = `Circolari`;
     align-self: flex-start;
 
     @media (max-width: 768px) {
-     display: none;
+      display: none;
     }
 
     .button-icon {

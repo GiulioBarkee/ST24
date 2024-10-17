@@ -148,6 +148,9 @@ const Privacy = `Privacy policy`;
         margin-bottom: 2rem;
         white-space: pre-line;
         font-weight: 300;
+        @media (max-width: 768px) {
+          margin-bottom: 1.5rem ;
+        }
       }
 
       ul {
@@ -186,6 +189,9 @@ const Privacy = `Privacy policy`;
           background-color: transparent;
           color: #fff;
           font-size: 1rem;
+          @media (max-width: 768px) {
+            margin-top: 1rem;
+          }
 
           &::placeholder {
             color: #fff;
@@ -228,7 +234,6 @@ const Privacy = `Privacy policy`;
   }
 
   .footer__bottom {
-    text-align: center;
     padding-top: 1rem;
     position: absolute;
     bottom: 1rem;
