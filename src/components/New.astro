@@ -22,7 +22,11 @@ const { newsItem } = Astro.props;
     width: 70%;
     margin: 0 auto;
     padding: 2rem;
-    color: #333;
+    color: #4c4c4c;
+    h1 {
+      font-family: "Gambetta";
+    }
+
     @media (max-width: 768px) {
       width: 100%;
     }
@@ -34,8 +38,9 @@ const { newsItem } = Astro.props;
     }
 
     .news-subtitle {
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
       font-size: var(--link);
+      color: #7e7e7e;
     }
 
     .news-meta {
@@ -55,7 +60,7 @@ const { newsItem } = Astro.props;
     .news-body {
       line-height: 1.8;
       font-size: 1rem;
-      color: #444;
+      color: #7e7e7e;
     }
   }
 </style>

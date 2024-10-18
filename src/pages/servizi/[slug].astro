@@ -92,10 +92,11 @@ const paragraphs = servizio.data.paragraphs || [];
   h1{padding: var(--padding-viewport); font-size: var(--h2);
     color: var(--ST24-skygreen);
     font-weight: 500; background-color: var(--ST24-skyazure); padding-bottom: 3rem;
+    font-family: 'Gambetta';
   @media (max-width: 768px) {
     padding-bottom: var(--padding-viewport);
   }}
-  section{padding: var(--padding-viewport);
+  section{padding: var(--padding-viewport);  font-family: 'Aspekta';
     @media (max-width: 768px) {
       padding-block: 4rem;
     }
@@ -156,6 +157,7 @@ const paragraphs = servizio.data.paragraphs || [];
       align-items: center;
       z-index: 1000;
       overflow-y: auto;
+      color: #243A3A;
 
       &.open {
         display: flex;

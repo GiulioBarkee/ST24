@@ -18,9 +18,10 @@ const sedi = [
   },
 ];
 const buttonText = `INVIA`;
+const { contattiPage } = Astro.props
 ---
 
-<section class="contact-section">
+<section class="contact-section" class:list={{ contattiPage}}>
   <h2>{titolo}</h2>
   <div class="contact-container">
     <!-- Colonna sinistra: Sedi -->
@@ -116,11 +117,13 @@ const buttonText = `INVIA`;
     color: #fff;
     border-bottom: 1px solid #fff;
     padding-block: 7rem;
+    font-family: "Aspekta";
 
     h2 {
       font-size: var(--h2);
       margin-bottom: 2rem;
       font-weight: 400;
+      font-family: "Gambetta";
     }
   }
 
@@ -149,7 +152,7 @@ const buttonText = `INVIA`;
         p {
           margin-bottom: 0.5rem;
           font-size: 1.2rem;
-          font-weight: 400;
+          font-weight: 200;
           @media (max-width: 768px) {
             margin-bottom: 0;
           }
@@ -194,7 +197,7 @@ const buttonText = `INVIA`;
         resize: none;
         height: 3rem;
         overflow: hidden;
-        font-family: "Gambetta", serif;
+        font-family: "Gambetta", sans-serif;
       }
 
       .button {
@@ -218,11 +221,9 @@ const buttonText = `INVIA`;
           background-color: var(--ST24-skyyellow);
         }
         &:hover {
-
           color: var(--ST24-skygreen);
         }
         &:hover .button-icon {
-
           filter: invert(0.8);
           color: var(--ST24-skygreen);
         }
@@ -248,4 +249,5 @@ const buttonText = `INVIA`;
     color: var(--ST24-skygreen);
     display: none;
   }
+  .contattiPage{height: calc(100vh - 8rem);}
 </style>

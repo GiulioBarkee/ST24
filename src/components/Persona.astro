@@ -66,14 +66,17 @@ const { Content } = await persona.render();
     padding-block: 1rem;
     border-bottom: 1px solid #dedede;
     position: relative;
+    font-family: "Aspekta";
 
     .modal-button {
       cursor: pointer;
       display: flex;
       z-index: 1;
+      color: #4c4c4c;
 
       .title {
         width: 60%;
+        font-size: 1.3rem;
       }
       .role {
         width: 40%;
@@ -98,9 +101,9 @@ const { Content } = await persona.render();
           display: flex;
           justify-content: center;
           align-self: center;
-        @media (max-width: 768px) {
-          justify-content: flex-end;
-        }
+          @media (max-width: 768px) {
+            justify-content: flex-end;
+          }
         }
 
         .role {
@@ -123,10 +126,9 @@ const { Content } = await persona.render();
       justify-content: center;
       align-items: center;
       z-index: 1000;
-      // right: -200rem; /* Fuori dalla vista inizialmente */
-      // transition: right 1s ease; /* Animazione di 1 secondo */
-
-      &.open {
+      color: #243a3a; // right: -200rem; /* Fuori dalla vista inizialmente */
+        // transition: right 1s ease; /* Animazione di 1 secondo */
+        &.open {
         // right: 0; /* Entra in vista */
         display: flex;
       }
