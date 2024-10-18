@@ -25,8 +25,20 @@ collections:
         label: "Link"
         widget: list
         fields:
-          - { name: link, label: "URL", widget: string }
-          - { name: img, label: "Immagine", widget: image, required: false }
+          - {
+              name: link,
+              label: "URL",
+              widget: string,
+              hint: "For Email add mailto: before email",
+            }
+          - {
+              name: img,
+              label: "Immagine",
+              widget: image,
+              required: false,
+              media_folder: "/public/assets/icons/",
+              public_folder: "/assets/icons/",
+            }
       - { name: body, label: "Descrizione", widget: markdown }
 
   - name: news
@@ -37,7 +49,12 @@ collections:
     public_folder: "/assets/news/"
     fields:
       - { name: title, label: "Titolo", widget: string }
-      - { name: subtitle, label: "Sottotitolo", widget: string, required: false }
+      - {
+          name: subtitle,
+          label: "Sottotitolo",
+          widget: string,
+          required: false,
+        }
       - { name: date, label: "Data", widget: datetime }
       - { name: category, label: "Categoria", widget: string }
       - { name: image, label: "Immagine", widget: image }
@@ -53,12 +70,22 @@ collections:
       - { name: date, label: "Data", widget: datetime }
       - { name: title, label: "Titolo", widget: string }
       - { name: body, label: "Testo", widget: markdown }
-      - label: "Documento"
-        name: document
-        widget: file
-        media_folder: "/public/assets/circolari/documents/"
-        public_folder: "/assets/circolari/documents/"
-        required: false
+      - {
+          name: documents,
+          label: "Documenti",
+          widget: list,
+          fields:
+            [
+              {
+                label: "file",
+                name: file,
+                widget: file,
+                media_folder: "/public/assets/circolari/documents/",
+                public_folder: "/assets/circolari/documents/",
+                required: false,
+              },
+            ],
+        }
 
   - name: servizi
     label: Servizi
@@ -66,12 +93,12 @@ collections:
     create: true
     media_folder: /public/assets/servizi/
     public_folder: "/assets/servizi/"
-    slug: "{{slug}}"
+    # slug: "{{slug}}"
     fields:
       - { name: title, label: "Titolo", widget: string }
       - { name: order, label: "Ordine Dei Servizi", widget: number }
       - { name: description, label: "Descrizione", widget: text }
-      
+
       # Lista di paragrafi con titolo e contenuto
       - label: "Paragrafi"
         name: "paragraphs"
@@ -79,5 +106,8 @@ collections:
         summary: "{{fields.title}}"
         fields:
           - { name: title, label: "Titolo del paragrafo", widget: string }
-          - { name: content, label: "Contenuto del paragrafo", widget: markdown }
-
+          - {
+              name: content,
+              label: "Contenuto del paragrafo",
+              widget: markdown,
+            }

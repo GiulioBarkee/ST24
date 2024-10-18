@@ -2,6 +2,11 @@
 title: Angelo Martinelli
 role: web developer
 img: /assets/persona.png
+links:
+  - link: mailto:giuliobarchi1@gmail.com
+    img: /assets/icons/Email.svg
+  - img: /assets/icons/linkedin.svg
+    link: https://linkedin.com/in/agsg
 ---
 Elit dignissim in integer tellus purus lacinia commodo id. Vitae sit mauris pellentesque facilisis viverra leo. Vitae lorem massa vitae eget. Arcu nisi imperdiet gravida pulvinar nunc et. In fames in facilisi urna. Adipiscing cursus massa eget nunc pretium elementum ultrices. Venenatis lacus nunc bibendum risus sed quam mi turpis amet. Felis laoreet in pharetra pulvinar cursus porta. Eu justo nisl habitant molestie. Cras dictum varius sit cum mauris congue elementum vehicula interdum. Nulla convallis sollicitudin id vel arcu nunc risus. Tristique id eget porttitor bibendum scelerisque at id pellentesque. Risus orci vestibulum euismod tincidunt. Et hac neque eget in.
 

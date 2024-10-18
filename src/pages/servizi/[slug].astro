@@ -44,7 +44,7 @@ const paragraphs = servizio.data.paragraphs || [];
   
   <div class="grid">
     {paragraphs.map((paragraph, index) => (
-      <div class="paragraph-item" key={index}>
+      <div class="paragraph-item" id={index}>
         <button class="paragraph-button" data-id={index}>
           {paragraph.title}
         </button>

@@ -1,5 +1,6 @@
 ---
 const { circolare } = Astro.props;
+const doc = `doc`;
 ---
 
 <section>
@@ -11,6 +12,13 @@ const { circolare } = Astro.props;
         </p>
         <h3 class="circolare-title">{circolare.data.title}</h3>
         <p class="circolare-body">{circolare.body}</p>
+        <div class="documents">
+          {circolare.data.documents.map((element) => (
+            <a href={element.file} target="_blank">
+              Download doc
+            </a>
+          ))}
+        </div>
       </>
     ) : (
       <p>Errore: circolare non trovata o dati mancanti.</p>
@@ -34,7 +42,7 @@ const { circolare } = Astro.props;
       font-size: 1.8rem;
       font-weight: 400;
       padding-bottom: 1rem;
-      color:#4C4C4C;
+      color: #4c4c4c;
     }
     .circolare-body {
       color: #7e7e7e;

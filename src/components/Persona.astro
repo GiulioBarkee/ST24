@@ -20,6 +20,13 @@ const { Content } = await persona.render();
         <img src={persona.data.img} alt={persona.data.name} />
         <div class="contain-text">
           <p>{persona.data.title}</p>
+          {
+            persona.data.links?.map(({ link, img }) => (
+              <a target="_blank" href={link}>
+                <img src={img} alt="icon" />
+              </a>
+            ))
+          }
           <div class="content" style="padding-bottom: 5rem;">
             <Content />
           </div>
@@ -51,7 +58,8 @@ const { Content } = await persona.render();
 
         // Chiudi il modale se clicchi fuori dal contenuto
         modal.addEventListener("click", (event) => {
-          if (event.target.classList.contains("modal-container")) {
+          const el = event.target as HTMLElement;
+          if (el.classList.contains("modal-container")) {
             modal.classList.remove("open");
           }
         });
@@ -127,12 +135,23 @@ const { Content } = await persona.render();
       align-items: center;
       z-index: 1000;
       color: #243a3a; // right: -200rem; /* Fuori dalla vista inizialmente */
-        // transition: right 1s ease; /* Animazione di 1 secondo */
-        &.open {
+      // transition: right 1s ease; /* Animazione di 1 secondo */
+      &.open {
         // right: 0; /* Entra in vista */
         display: flex;
+        .right-panel {
+          animation: rightToLeft 0.4s ease-in-out;
+        }
       }
 
+      @keyframes rightToLeft {
+        from {
+          transform: translateX(100%);
+        }
+        to {
+          transform: translateX(0);
+        }
+      }
       .right-panel {
         flex: 0.75;
         background: var(--ST24-skyyellow);
